@@ -1,0 +1,175 @@
+/* Moharykat — Premium Landing Page Styles */
+
+:root {
+  --green-950: #052e1f;
+  --green-900: #0b4d33;
+  --green-800: #0f6040;
+  --green-700: #147a52;
+  --orange-500: #f05a28;
+  --orange-600: #e04a18;
+  --orange-400: #ff7a4d;
+  --cream: #f8faf9;
+  --charcoal: #1a1a1a;
+  --muted: #64748b;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: var(--cream);
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-arabic {
+  font-family: "IBM Plex Sans Arabic", "Inter", sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--green-800);
+  border-radius: 4px;
+}
+
+/* Topographic pattern overlay */
+.topo-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 Q15 20 30 30 T60 30' fill='none' stroke='%23147a52' stroke-width='0.5' opacity='0.15'/%3E%3Cpath d='M0 45 Q15 35 30 45 T60 45' fill='none' stroke='%23147a52' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E");
+}
+
+/* Product image crop — isolates product from promotional graphics */
+.product-crop {
+  overflow: hidden;
+  background: linear-gradient(180deg, #e8ecea 0%, #d4dad6 100%);
+}
+
+.product-crop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 72%;
+  transform: scale(1.35);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .product-crop img {
+  transform: scale(1.42);
+}
+
+.bundle-crop {
+  overflow: hidden;
+  background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.bundle-crop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .bundle-crop img {
+  transform: scale(1.06);
+}
+
+/* Card animations */
+.product-card {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -12px rgba(11, 77, 51, 0.18);
+}
+
+/* Badge pulse */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+.badge-pulse {
+  animation: pulse-soft 2.5s ease-in-out infinite;
+}
+
+/* Hero gradient overlay */
+.hero-overlay {
+  background: linear-gradient(
+    105deg,
+    rgba(5, 46, 31, 0.92) 0%,
+    rgba(5, 46, 31, 0.75) 45%,
+    rgba(5, 46, 31, 0.35) 100%
+  );
+}
+
+@media (max-width: 768px) {
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 46, 31, 0.88) 0%,
+      rgba(5, 46, 31, 0.7) 60%,
+      rgba(5, 46, 31, 0.5) 100%
+    );
+  }
+}
+
+/* Sticky mobile CTA */
+.mobile-cta-bar {
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-cta-bar.visible {
+  transform: translateY(0);
+}
+
+/* FAQ accordion */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 300px;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-icon {
+  transition: transform 0.3s ease;
+}
+
+/* Nav scroll state */
+.nav-scrolled {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Focus styles for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--orange-500);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

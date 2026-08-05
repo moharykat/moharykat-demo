@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سلة التسوق | Moharykat محركات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#005B25', 'green-hover': '#00471c', orange: '#F04F25',
+                            'orange-hover': '#d9441f', bg: '#FFFFFF', alt: '#F8FAF8', subtle: '#F4F6F5',
+                            text: '#111827', sec: '#374151', muted: '#6B7280', border: '#E5E7EB'
+                        }
+                    },
+                    fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+                    boxShadow: {
+                        'premium-soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'card': '0 4px 20px rgba(0,0,0,0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #FFFFFF; color: #111827; overflow-x: hidden; }
+        html[lang="en"] .lang-ar { display: none !important; }
+        html[lang="ar"] .lang-en { display: none !important; }
+        html[lang="en"] { direction: ltr; }
+        html[lang="ar"] { direction: rtl; }
+        .btn-primary { background-color: #005B25; color: white; transition: all 0.3s ease; }
+        .btn-primary:hover { background-color: #00471c; transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(0, 91, 37, 0.3); }
+        .btn-secondary { background-color: white; color: #005B25; border: 2px solid #005B25; transition: all 0.3s ease; }
+        .btn-secondary:hover { background-color: #F8FAF8; transform: translateY(-2px); }
+        .premium-card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); transition: all 0.4s ease; }
+        .premium-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(0, 91, 37, 0.12); border-color: rgba(0, 91, 37, 0.2); }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: #005B25; transition: width 0.3s ease; }
+        html[lang="ar"] .nav-link::after { left: auto; right: 0; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .hover-img-zoom:hover img { transform: scale(1.08); }
+        .recent-order-toast { position: fixed; bottom: 6.5rem; left: 1.5rem; z-index: 45; max-width: 320px; background: #FFF; border: 1px solid #E5E7EB; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px; transform: translateX(-120%); opacity: 0; transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s ease; pointer-events: none; }
+        html[lang="en"] .recent-order-toast { left: auto; right: 1.5rem; transform: translateX(120%); }
+        .recent-order-toast.show { transform: translateX(0); opacity: 1; pointer-events: auto; }
+        .whatsapp-float { position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 45; width: 56px; height: 56px; background-color: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: all 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.08); }
+        html[lang="en"] .whatsapp-float { left: auto; right: 1.5rem; }
+        .cart-qty-btn { width: 36px; height: 36px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; border: 1px solid #E5E7EB; background: white; color: #374151; transition: all 0.2s; }
+        .cart-qty-btn:hover { background: #F8FAF8; border-color: #005B25; color: #005B25; }
+        .mobile-checkout-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 40; background: white; border-top: 1px solid #E5E7EB; padding: 12px 16px; box-shadow: 0 -4px 20px rgba(0,0,0,0.08); }
+        @media (min-width: 768px) { .mobile-checkout-bar { display: none; } }
+        @media (max-width: 767px) { body.has-cart-items { padding-bottom: 88px; } }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-green selection:text-white relative">
+
+    <!-- Sticky Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-brand-border shadow-sm" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="block group">
+                        <img class="h-14 w-auto group-hover:scale-105 transition-transform filter brightness-0"
+                            src="assets/logo/logo.png" alt="Moharykat Logo">
+                    </a>
+                </div>
+                <div class="hidden lg:flex space-x-10 items-center" dir="ltr">
+                    <a href="index.html" class="nav-link text-brand-sec hover:text-brand-text font-bold tracking-wide">
+                        <span class="lang-ar">الرئيسية</span><span class="lang-en ml-10">Home</span>
+                    </a>
+                    <a href="index.html#bundles" class="nav-link text-brand-sec hover:text-brand-text font-bold tracking-wide">
+                        <span class="lang-ar">أقوى العروض</span><span class="lang-en ml-10">Top Offers</span>
+                    </a>
+                    <a href="index.html#products" class="nav-link text-brand-sec hover:text-brand-text font-bold tracking-wide">
+                        <span class="lang-ar">المنتجات</span><span class="lang-en ml-10">Products</span>
+                    </a>
+                    <a href="index.html#why-us" class="nav-link text-brand-sec hover:text-brand-text font-bold tracking-wide">
+                        <span class="lang-ar">عن محركات</span><span class="lang-en ml-10">About Us</span>
+                    </a>
+                </div>
+                <div class="hidden lg:flex items-center gap-6">
+                    <button id="langToggle" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-text hover:border-brand-green transition-all bg-white shadow-sm">
+                        <span class="lang-ar font-bold text-sm">EN</span>
+                        <span class="lang-en font-bold text-sm">AR</span>
+                    </button>
+                    <button class="text-brand-sec hover:text-brand-green transition-colors">
+                        <i class="fa-solid fa-magnifying-glass text-xl"></i>
+                    </button>
+                    <a href="cart.html" class="text-brand-green transition-colors relative">
+                        <i class="fa-solid fa-bag-shopping text-xl"></i>
+                        <span data-cart-badge class="absolute -top-2 -right-2 bg-brand-orange text-white text-[10px] font-bold min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center hidden">0</span>
+                    </a>
+                    <a href="index.html#bundles" class="btn-primary px-8 py-3 rounded-full font-bold shadow-md flex items-center gap-2">
+                        <span class="lang-ar">تسوق الآن</span><span class="lang-en">Shop Now</span>
+                    </a>
+                </div>
+                <div class="lg:hidden flex items-center gap-5">
+                    <a href="cart.html" class="text-brand-green relative">
+                        <i class="fa-solid fa-bag-shopping text-xl"></i>
+                        <span data-cart-badge class="absolute -top-2 -right-2 bg-brand-orange text-white text-[10px] font-bold min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center hidden">0</span>
+                    </a>
+                    <button id="mobileLangToggle" class="text-brand-text font-bold">
+                        <span class="lang-ar">EN</span><span class="lang-en">AR</span>
+                    </button>
+                    <button id="mobileMenuBtn" class="text-brand-text focus:outline-none">
+                        <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="fixed inset-0 bg-white z-40 hidden flex-col justify-center items-center h-screen w-full pt-20">
+            <div class="flex flex-col gap-8 text-center w-full px-6">
+                <a href="index.html" class="text-3xl font-bold text-brand-sec hover:text-brand-green mobile-link"><span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span></a>
+                <a href="index.html#products" class="text-3xl font-bold text-brand-sec hover:text-brand-green mobile-link"><span class="lang-ar">المنتجات</span><span class="lang-en">Products</span></a>
+                <a href="cart.html" class="text-3xl font-bold text-brand-green mobile-link"><span class="lang-ar">السلة</span><span class="lang-en">Cart</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 bg-brand-bg"></div>
+
+    <main class="py-10 bg-brand-bg min-h-[60vh]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Page Title -->
+            <div class="mb-8">
+                <h1 class="text-3xl md:text-4xl font-black text-brand-text">
+                    <span class="lang-ar">سلة التسوق</span><span class="lang-en">Shopping Cart</span>
+                </h1>
+                <p class="text-brand-sec font-medium mt-2">
+                    <span class="lang-ar">راجع منتجاتك قبل إتمام الطلب</span>
+                    <span class="lang-en">Review your items before checkout</span>
+                </p>
+            </div>
+
+            <!-- Empty Cart State -->
+            <div id="emptyCartState" class="hidden text-center py-16 premium-card px-6">
+                <div class="w-24 h-24 rounded-full bg-brand-alt border border-brand-border flex items-center justify-center mx-auto mb-6">
+                    <i class="fa-solid fa-bag-shopping text-4xl text-brand-muted"></i>
+                </div>
+                <h2 class="text-2xl font-black text-brand-text mb-3">
+                    <span class="lang-ar">سلتك فارغة</span><span class="lang-en">Your cart is empty</span>
+                </h2>
+                <p class="text-brand-sec mb-8 max-w-md mx-auto">
+                    <span class="lang-ar">لم تضف أي منتجات بعد. تصفّح الأكثر مبيعاً وابدأ التسوق الآن.</span>
+                    <span class="lang-en">You haven't added any items yet. Browse our best sellers and start shopping.</span>
+                </p>
+                <a href="index.html#products" class="btn-primary inline-flex items-center gap-3 px-10 py-4 rounded-full font-bold text-lg">
+                    <span class="lang-ar">تصفّح الأكثر مبيعاً</span><span class="lang-en">Browse Best Sellers</span>
+                    <i class="fa-solid fa-arrow-left lang-ar"></i>
+                    <i class="fa-solid fa-arrow-right lang-en"></i>
+                </a>
+            </div>
+
+            <!-- Cart Content -->
+            <div id="cartContent" class="hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                    <!-- Line Items -->
+                    <div class="lg:col-span-2 space-y-4" id="cartLineItems"></div>
+
+                    <!-- Order Summary -->
+                    <div class="lg:col-span-1">
+                        <div class="premium-card p-6 sticky top-28">
+                            <h2 class="text-xl font-black text-brand-text mb-6">
+                                <span class="lang-ar">ملخص الطلب</span><span class="lang-en">Order Summary</span>
+                            </h2>
+                            <div class="space-y-3 text-sm font-bold text-brand-sec mb-6">
+                                <div class="flex justify-between">
+                                    <span class="lang-ar">المجموع الفرعي</span><span class="lang-en">Subtotal</span>
+                                    <span id="summarySubtotal" class="text-brand-text">0.00 ر.س</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="lang-ar">الشحن</span><span class="lang-en">Shipping</span>
+                                    <span id="summaryShipping" class="text-brand-text">25.00 ر.س</span>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-sm font-bold text-brand-sec mb-2">
+                                    <span class="lang-ar">كود الخصم</span><span class="lang-en">Discount Code</span>
+                                </label>
+                                <div class="flex gap-2">
+                                    <input type="text" placeholder="MOHARY10"
+                                        class="flex-1 bg-brand-alt border border-brand-border rounded-xl py-3 px-4 text-sm text-brand-text focus:outline-none focus:border-brand-green transition-colors"
+                                        dir="ltr">
+                                    <button type="button" class="btn-secondary px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap">
+                                        <span class="lang-ar">تطبيق</span><span class="lang-en">Apply</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center border-t border-brand-border pt-4 mb-6">
+                                <span class="text-lg font-black text-brand-text">
+                                    <span class="lang-ar">الإجمالي</span><span class="lang-en">Total</span>
+                                </span>
+                                <span id="summaryTotal" class="text-2xl font-black text-brand-green">0.00 ر.س</span>
+                            </div>
+
+                            <!-- Trust Row -->
+                            <div class="grid grid-cols-3 gap-2 py-4 border-t border-brand-border mb-6">
+                                <div class="flex flex-col items-center text-center gap-1">
+                                    <i class="fa-solid fa-medal text-brand-green text-lg"></i>
+                                    <span class="text-[10px] font-bold text-brand-sec lang-ar">قطع أصلية 100%</span>
+                                    <span class="text-[10px] font-bold text-brand-sec lang-en">100% Genuine</span>
+                                </div>
+                                <div class="flex flex-col items-center text-center gap-1 border-r border-brand-border rtl:border-l rtl:border-r-0">
+                                    <i class="fa-solid fa-rotate-left text-brand-green text-lg"></i>
+                                    <span class="text-[10px] font-bold text-brand-sec lang-ar">ضمان استرجاع 14 يوم</span>
+                                    <span class="text-[10px] font-bold text-brand-sec lang-en">14-Day Returns</span>
+                                </div>
+                                <div class="flex flex-col items-center text-center gap-1 border-r border-brand-border rtl:border-l rtl:border-r-0">
+                                    <i class="fa-solid fa-lock text-brand-orange text-lg"></i>
+                                    <span class="text-[10px] font-bold text-brand-sec lang-ar">دفع آمن</span>
+                                    <span class="text-[10px] font-bold text-brand-sec lang-en">Secure Pay</span>
+                                </div>
+                            </div>
+
+                            <a href="checkout.html" id="desktopCheckoutBtn"
+                                class="hidden md:flex w-full btn-primary rounded-full font-black text-lg h-14 justify-center items-center gap-3 shadow-[0_10px_30px_rgba(0,91,37,0.3)]">
+                                <span class="lang-ar">متابعة الدفع</span><span class="lang-en">Proceed to Checkout</span>
+                                <i class="fa-solid fa-arrow-left lang-ar"></i>
+                                <i class="fa-solid fa-arrow-right lang-en"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cross-sell -->
+                <section class="mt-16">
+                    <h2 class="text-2xl font-black text-brand-text mb-6">
+                        <span class="lang-ar">أضف أيضاً</span><span class="lang-en">You May Also Like</span>
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="crossSellGrid"></div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Sticky Checkout Bar -->
+    <div id="mobileCheckoutBar" class="mobile-checkout-bar hidden">
+        <div class="flex items-center justify-between gap-4 max-w-7xl mx-auto">
+            <div>
+                <p class="text-xs text-brand-sec font-bold"><span class="lang-ar">الإجمالي</span><span class="lang-en">Total</span></p>
+                <p id="mobileSummaryTotal" class="text-xl font-black text-brand-green">0.00 ر.س</p>
+            </div>
+            <a href="checkout.html" class="btn-primary flex-1 max-w-[220px] rounded-full font-black text-base h-12 flex justify-center items-center gap-2">
+                <span class="lang-ar">متابعة الدفع</span><span class="lang-en">Checkout</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white pt-16 pb-10 border-t border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="border-t border-brand-border pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <p class="text-sm text-brand-muted font-medium">&copy; 2026 <span class="lang-ar">محركات. جميع الحقوق محفوظة.</span><span class="lang-en">Moharykat. All rights reserved.</span></p>
+                <div class="flex gap-4">
+                    <i class="fa-brands fa-cc-visa text-3xl text-brand-border"></i>
+                    <i class="fa-brands fa-cc-mastercard text-3xl text-brand-border"></i>
+                    <i class="fa-brands fa-cc-apple-pay text-3xl text-brand-border"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="recentOrderToast" class="recent-order-toast" aria-live="polite">
+        <div class="w-8 h-8 rounded-full bg-brand-green/10 flex items-center justify-center flex-shrink-0 border border-brand-green/20">
+            <i class="fa-solid fa-circle-check text-brand-green text-sm"></i>
+        </div>
+        <p id="recentOrderText" class="text-xs text-brand-sec leading-relaxed font-medium"></p>
+    </div>
+
+    <a href="https://wa.me/966XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="products-data.js"></script>
+    <script src="cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var htmlTag = document.documentElement;
+            htmlTag.setAttribute('lang', 'ar');
+
+            [document.getElementById('langToggle'), document.getElementById('mobileLangToggle')].forEach(function (btn) {
+                if (!btn) return;
+                btn.addEventListener('click', function () {
+                    htmlTag.setAttribute('lang', htmlTag.getAttribute('lang') === 'ar' ? 'en' : 'ar');
+                    renderCart();
+                });
+            });
+
+            var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            var mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenu.classList.toggle('flex');
+                });
+                document.querySelectorAll('.mobile-link').forEach(function (link) {
+                    link.addEventListener('click', function () {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('flex');
+                    });
+                });
+            }
+
+            function getTitle(product) {
+                return htmlTag.getAttribute('lang') === 'ar' ? product.titleAr : product.titleEn;
+            }
+
+            function renderCrossSell(cartIds) {
+                var grid = document.getElementById('crossSellGrid');
+                var candidates = PRODUCTS.filter(function (p) { return cartIds.indexOf(p.id) === -1; }).slice(0, 3);
+                grid.innerHTML = candidates.map(function (product) {
+                    return '<div class="premium-card p-4 group relative">' +
+                        '<div class="h-44 bg-brand-alt rounded-2xl mb-4 overflow-hidden flex justify-center items-center p-4 hover-img-zoom border border-brand-border/50">' +
+                        '<a href="' + product.url + '" class="contents"><img src="' + product.image + '" alt="" class="object-contain w-full h-full transition-transform duration-500"></a></div>' +
+                        '<h3 class="font-bold text-brand-text mb-1 group-hover:text-brand-green transition-colors px-1">' +
+                        '<a href="' + product.url + '">' + getTitle(product) + '</a></h3>' +
+                        '<p class="text-lg font-black text-brand-text mb-4 px-1">' + MoharykatCart.formatPrice(product.price) +
+                        ' <span class="text-sm font-bold text-brand-sec">' + (htmlTag.getAttribute('lang') === 'ar' ? 'ر.س' : 'SAR') + '</span></p>' +
+                        '<button type="button" data-cross-sell-id="' + product.id + '" class="w-full py-3 rounded-xl btn-secondary font-bold text-sm flex justify-center items-center gap-2 mx-1">' +
+                        '<i class="fa-solid fa-cart-plus"></i> <span class="lang-ar">أضف للسلة</span><span class="lang-en">Add to Cart</span></button></div>';
+                }).join('');
+
+                grid.querySelectorAll('[data-cross-sell-id]').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        MoharykatCart.addToCart(btn.getAttribute('data-cross-sell-id'), 1);
+                        renderCart();
+                    });
+                });
+            }
+
+            function renderLineItem(line) {
+                var product = line.product;
+                return '<div class="premium-card p-4 md:p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center" data-line-id="' + product.id + '">' +
+                    '<a href="' + product.url + '" class="w-full sm:w-28 h-28 bg-brand-alt rounded-2xl p-3 flex items-center justify-center border border-brand-border/50 shrink-0">' +
+                    '<img src="' + product.image + '" alt="" class="object-contain w-full h-full"></a>' +
+                    '<div class="flex-1 min-w-0">' +
+                    '<a href="' + product.url + '" class="font-bold text-lg text-brand-text hover:text-brand-green transition-colors block mb-1">' + getTitle(product) + '</a>' +
+                    '<p class="text-sm font-bold text-brand-sec">' + MoharykatCart.formatPrice(product.price) +
+                    ' <span class="lang-ar">ر.س / للقطعة</span><span class="lang-en">SAR / each</span></p></div>' +
+                    '<div class="flex items-center gap-3 shrink-0">' +
+                    '<div class="flex items-center border border-brand-border rounded-full bg-white px-1">' +
+                    '<button type="button" class="cart-qty-btn" data-qty-action="decrease" data-product-id="' + product.id + '"><i class="fa-solid fa-minus text-xs"></i></button>' +
+                    '<span class="w-10 text-center font-black text-brand-text" data-qty-display="' + product.id + '">' + line.quantity + '</span>' +
+                    '<button type="button" class="cart-qty-btn" data-qty-action="increase" data-product-id="' + product.id + '"><i class="fa-solid fa-plus text-xs"></i></button></div>' +
+                    '<p class="font-black text-brand-text w-24 text-left rtl:text-right" data-line-total="' + product.id + '">' + MoharykatCart.formatPriceLabel(line.lineTotal) + '</p>' +
+                    '<button type="button" class="w-10 h-10 rounded-full text-brand-muted hover:text-red-500 hover:bg-red-50 transition-colors" data-remove-id="' + product.id + '" aria-label="Remove">' +
+                    '<i class="fa-solid fa-xmark text-lg"></i></button></div></div>';
+            }
+
+            function renderCart() {
+                var lines = MoharykatCart.getCartLines();
+                var emptyState = document.getElementById('emptyCartState');
+                var cartContent = document.getElementById('cartContent');
+                var mobileBar = document.getElementById('mobileCheckoutBar');
+
+                if (lines.length === 0) {
+                    emptyState.classList.remove('hidden');
+                    cartContent.classList.add('hidden');
+                    mobileBar.classList.add('hidden');
+                    document.body.classList.remove('has-cart-items');
+                    return;
+                }
+
+                emptyState.classList.add('hidden');
+                cartContent.classList.remove('hidden');
+                mobileBar.classList.remove('hidden');
+                document.body.classList.add('has-cart-items');
+
+                document.getElementById('cartLineItems').innerHTML = lines.map(renderLineItem).join('');
+
+                var subtotal = MoharykatCart.getSubtotal();
+                var shipping = MoharykatCart.getShippingFee();
+                var total = MoharykatCart.getTotal();
+                var currency = htmlTag.getAttribute('lang') === 'ar' ? ' ر.س' : ' SAR';
+
+                document.getElementById('summarySubtotal').textContent = MoharykatCart.formatPrice(subtotal) + currency;
+                document.getElementById('summaryShipping').textContent = MoharykatCart.formatPrice(shipping) + currency;
+                document.getElementById('summaryTotal').textContent = MoharykatCart.formatPrice(total) + currency;
+                document.getElementById('mobileSummaryTotal').textContent = MoharykatCart.formatPrice(total) + currency;
+
+                renderCrossSell(lines.map(function (l) { return l.productId; }));
+
+                document.querySelectorAll('[data-qty-action]').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        var id = btn.getAttribute('data-product-id');
+                        var cart = MoharykatCart.getCart();
+                        var item = cart.find(function (i) { return i.productId === id; });
+                        if (!item) return;
+                        var qty = item.quantity + (btn.getAttribute('data-qty-action') === 'increase' ? 1 : -1);
+                        MoharykatCart.setQuantity(id, qty);
+                        renderCart();
+                    });
+                });
+
+                document.querySelectorAll('[data-remove-id]').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        MoharykatCart.removeFromCart(btn.getAttribute('data-remove-id'));
+                        renderCart();
+                    });
+                });
+            }
+
+            document.addEventListener('cart:updated', renderCart);
+            renderCart();
+        });
+    </script>
+</body>
+
+</html>

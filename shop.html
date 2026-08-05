@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moharykat | محركات - المتجر</title>
+
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#005B25',
+                            'green-hover': '#00471c',
+                            orange: '#F04F25',
+                            'orange-hover': '#d9441f',
+                            bg: '#FFFFFF',
+                            alt: '#F8FAF8',
+                            subtle: '#F4F6F5',
+                            text: '#111827',
+                            sec: '#374151',
+                            muted: '#6B7280',
+                            border: '#E5E7EB'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'premium-soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'premium-hover': '0 20px 40px -10px rgba(0,91,37,0.15)',
+                        'card': '0 4px 20px rgba(0,0,0,0.05)',
+                        'card-hover': '0 15px 35px rgba(0,0,0,0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #FFFFFF;
+            color: #111827;
+            overflow-x: hidden;
+        }
+
+        /* Bilingual Toggle Logic */
+        html[lang="en"] .lang-ar {
+            display: none !important;
+        }
+
+        html[lang="ar"] .lang-en {
+            display: none !important;
+        }
+
+        html[lang="en"] {
+            direction: ltr;
+        }
+
+        html[lang="ar"] {
+            direction: rtl;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F4F6F5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #005B25;
+        }
+
+        /* Premium Floating Cards */
+        .premium-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px -10px rgba(0, 91, 37, 0.12);
+            border-color: rgba(0, 91, 37, 0.2);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: #005B25;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #00471c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(0, 91, 37, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #005B25;
+            border: 2px solid #005B25;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #F8FAF8;
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background-color: #F04F25;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-accent:hover {
+            background-color: #d9441f;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(240, 79, 37, 0.3);
+        }
+
+        /* Utilities */
+        .text-gradient-brand {
+            background: linear-gradient(135deg, #005B25 0%, #008a38 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hover-img-zoom:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Nav Link Underline */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #005B25;
+            transition: width 0.3s ease;
+        }
+
+        html[lang="ar"] .nav-link::after {
+            left: auto;
+            right: 0;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 45;
+            width: 56px;
+            height: 56px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+        }
+
+        html[lang="en"] .whatsapp-float {
+            left: auto;
+            right: 1.5rem;
+        }
+
+        /* Page Title Header with Background Image */
+        .page-header-banner {
+            position: relative;
+            background-image: linear-gradient(rgba(17, 24, 39, 0.75), rgba(0, 91, 37, 0.85)), url('https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .shop-input:focus {
+            border-color: #005B25;
+            box-shadow: 0 0 0 3px rgba(0, 91, 37, 0.12);
+        }
+
+        .product-card.hidden-product {
+            display: none !important;
+        }
+
+        .view-btn.active {
+            background: #005B25;
+            color: #fff;
+            border-color: #005B25;
+        }
+
+        #productsGrid.list-view {
+            grid-template-columns: 1fr !important;
+        }
+
+        #productsGrid.list-view .product-card {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 20px;
+        }
+
+        #productsGrid.list-view .product-image {
+            height: 200px;
+            margin-bottom: 0;
+        }
+
+        @media(max-width:640px) {
+            #productsGrid.list-view .product-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Custom Range Input */
+        input[type=range] {
+            accent-color: #005B25;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-green selection:text-white relative bg-brand-alt">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-brand-border shadow-sm"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="./index.html" class="block group">
+                        <img class="h-14 w-auto group-hover:scale-105 transition-transform filter brightness-0"
+                            src="assets/logo/logo.png" alt="Moharykat Logo">
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex space-x-10 items-center" dir="ltr">
+                    <a href="index.html#hero"
+                        class="nav-link text-brand-sec hover:text-brand-text font-bold tracking-wide">
+                        <span class="lang-ar">الرئيسية</span><span class="lang-en ml-10">Home</span>
+                    </a>
+                    <a href="index.html#bundles"
+                        class="nav-link text-brand-sec hover:text-brand-text font-bold tracking-wide">
+                        <span class="lang-ar">أقوى العروض</span><span class="lang-en ml-10">Top Offers</span>
+                    </a>
+                    <a href="shop.html"
+                        class="nav-link text-brand-sec hover:text-brand-text font-bold tracking-wide active">
+                        <span class="lang-ar">المنتجات</span><span class="lang-en ml-10">Products</span>
+                    </a>
+                    <a href="index.html#why-us"
+                        class="nav-link text-brand-sec hover:text-brand-text font-bold tracking-wide">
+                        <span class="lang-ar">عن محركات</span><span class="lang-en ml-10">About Us</span>
+                    </a>
+                </div>
+
+                <!-- Actions -->
+                <div class="hidden lg:flex items-center gap-6">
+                    <button id="langToggle"
+                        class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-text hover:border-brand-green transition-all bg-white shadow-sm">
+                        <span class="lang-ar font-bold text-sm">EN</span>
+                        <span class="lang-en font-bold text-sm">AR</span>
+                    </button>
+                    <button class="text-brand-sec hover:text-brand-green transition-colors relative">
+                        <i class="fa-solid fa-bag-shopping text-xl"></i>
+                        <span
+                            class="absolute -top-2 -right-2 bg-brand-orange text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                    <a href="index.html#bundles"
+                        class="btn-primary px-8 py-3 rounded-full font-bold shadow-md flex items-center gap-2">
+                        <span class="lang-ar">تسوق الآن</span><span class="lang-en">Shop Now</span>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center gap-5">
+                    <button id="mobileLangToggle" class="text-brand-text font-bold">
+                        <span class="lang-ar">EN</span><span class="lang-en">AR</span>
+                    </button>
+                    <button id="mobileMenuBtn" class="text-brand-text focus:outline-none">
+                        <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu"
+            class="fixed inset-0 bg-white z-40 hidden flex-col justify-center items-center h-screen w-full pt-20">
+            <div class="flex flex-col gap-8 text-center w-full px-6">
+                <a href="index.html#hero" class="text-3xl font-bold text-brand-sec hover:text-brand-green mobile-link">
+                    <span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span>
+                </a>
+                <a href="index.html#bundles"
+                    class="text-3xl font-bold text-brand-sec hover:text-brand-green mobile-link">
+                    <span class="lang-ar">أقوى العروض</span><span class="lang-en">Top Offers</span>
+                </a>
+                <a href="shop.html" class="text-3xl font-bold text-brand-sec hover:text-brand-green mobile-link">
+                    <span class="lang-ar">المنتجات</span><span class="lang-en">Products</span>
+                </a>
+                <a href="index.html#why-us"
+                    class="text-3xl font-bold text-brand-sec hover:text-brand-green mobile-link">
+                    <span class="lang-ar">عن محركات</span><span class="lang-en">About Us</span>
+                </a>
+                <a href="index.html#bundles"
+                    class="mt-8 btn-primary px-8 py-4 rounded-full font-bold text-xl inline-block mobile-link">
+                    <span class="lang-ar">تسوق الآن</span><span class="lang-en">Shop Now</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24">
+        <!-- Page Title Banner with Background Image and Breadcrumbs Overlaid -->
+        <section class="page-header-banner py-20 md:py-28 text-white relative overflow-hidden shadow-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <!-- Breadcrumbs -->
+                <nav class="flex justify-center items-center gap-2 text-sm text-green-100 font-semibold mb-4"
+                    aria-label="Breadcrumb">
+                    <a href="index.html" class="hover:text-white transition-colors">
+                        <span class="lang-ar">الرئيسية</span>
+                        <span class="lang-en">Home</span>
+                    </a>
+                    <i class="fa-solid fa-chevron-left text-xs rtl:inline-block hidden opacity-70"></i>
+                    <i class="fa-solid fa-chevron-right text-xs ltr:inline-block hidden opacity-70"></i>
+                    <span class="text-brand-orange font-bold">
+                        <span class="lang-ar">المتجر</span>
+                        <span class="lang-en">Shop</span>
+                    </span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-3">
+                    <span class="lang-ar">متجر قطع الغيار</span>
+                    <span class="lang-en">Auto Parts Shop</span>
+                </h1>
+                <p class="text-green-100 text-base md:text-lg max-w-2xl mx-auto font-medium">
+                    <span class="lang-ar">تصفح أفضل قطع الغيار الأصلية والبكجات الحصرية لسياراتك</span>
+                    <span class="lang-en">Explore the finest genuine spare parts & exclusive bundles for your car</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- LATEST DEALS SECTION (Matching Provided Image Style with Custom Brand Colors & Data) -->
+        <section class="py-12 bg-white border-b border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="flex items-center justify-between mb-8 pb-4 border-b border-brand-border/60">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-black text-brand-text flex items-center gap-3">
+                            <span class="lang-ar">أحدث العروض لهذا الأسبوع</span>
+                            <span class="lang-en">Latest Deals for This Week</span>
+                        </h2>
+                        <p class="text-xs md:text-sm text-brand-muted mt-1 font-medium">
+                            <span class="lang-ar">لا تفوت الفرصة للحصول على أفضل التخفيضات الحصرية</span>
+                            <span class="lang-en">Don't miss out on this week's exclusive deals</span>
+                        </p>
+                    </div>
+                    <a href="#productsGrid"
+                        class="text-sm font-bold text-brand-green hover:text-brand-green-hover flex items-center gap-2 group transition-colors">
+                        <span class="lang-ar">عرض الكل</span>
+                        <span class="lang-en">View All</span>
+                        <i
+                            class="fa-solid fa-arrow-left rtl:inline-block hidden group-hover:-translate-x-1 transition-transform"></i>
+                        <i
+                            class="fa-solid fa-arrow-right ltr:inline-block hidden group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Deals Grid (Horizontal Layout Cards as in Reference Image) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <!-- Deal Card 1 -->
+                    <div
+                        class="bg-white border border-brand-border rounded-2xl p-5 relative flex flex-col sm:flex-row items-center gap-6 shadow-sm hover:shadow-md transition-shadow">
+                        <!-- Discount Badge -->
+                        <span
+                            class="absolute top-0 right-0 rtl:right-0 rtl:left-auto ltr:left-0 ltr:right-auto bg-brand-orange text-white font-black text-sm px-3.5 py-1.5 rounded-br-xl rtl:rounded-br-none rtl:rounded-bl-xl ltr:rounded-br-xl ltr:rounded-bl-none shadow-sm z-10">
+                            -31%
+                        </span>
+                        <!-- Product Image Box -->
+                        <div
+                            class="w-full sm:w-48 h-48 bg-brand-alt rounded-xl p-4 flex items-center justify-center relative flex-shrink-0 border border-brand-border/40">
+                            <button
+                                class="wishlist-btn absolute top-3 left-3 rtl:left-3 rtl:right-auto ltr:right-3 ltr:left-auto w-8 h-8 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange transition-colors shadow-sm">
+                                <i class="fa-regular fa-heart text-sm"></i>
+                            </button>
+                            <img src="assets/bundles/bundle-v6.png" alt="Dodge V6 Bundle"
+                                class="max-h-full max-w-full object-contain drop-shadow-sm">
+                        </div>
+                        <!-- Product Details -->
+                        <div class="flex-1 w-full flex flex-col justify-between h-full">
+                            <div>
+                                <h3 class="font-bold text-base md:text-lg text-brand-text mb-2 leading-snug">
+                                    <span class="lang-ar">بكج فحمات دودج V6 المتكامل (أمامية + خلفية)</span>
+                                    <span class="lang-en">Dodge V6 Complete Brake Pads Bundle (Front + Rear)</span>
+                                </h3>
+                                <!-- Ratings -->
+                                <div class="flex items-center gap-1.5 text-xs text-amber-400 mb-3 font-medium">
+                                    <div class="flex">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="text-brand-muted text-xs">(12 تقييم)</span>
+                                </div>
+                                <!-- Pricing -->
+                                <div class="flex items-baseline gap-3 mb-4">
+                                    <span class="text-2xl font-black text-brand-orange">380 <span
+                                            class="text-xs font-bold">SAR</span></span>
+                                    <span class="text-sm font-bold text-brand-muted line-through">550 SAR</span>
+                                </div>
+                            </div>
+                            <!-- Stock Progress Bar -->
+                            <div class="space-y-1.5 pt-2 border-t border-brand-border/40">
+                                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                                    <div class="bg-gradient-to-r from-brand-orange to-amber-400 h-2.5 rounded-full"
+                                        style="width: 65%;"></div>
+                                </div>
+                                <div class="flex justify-between text-xs font-bold text-brand-muted">
+                                    <span><span class="lang-ar">متبقي قطع قليلة فقط</span><span class="lang-en">Only a
+                                            few items left</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Deal Card 2 -->
+                    <div
+                        class="bg-white border border-brand-border rounded-2xl p-5 relative flex flex-col sm:flex-row items-center gap-6 shadow-sm hover:shadow-md transition-shadow">
+                        <!-- Discount Badge -->
+                        <span
+                            class="absolute top-0 right-0 rtl:right-0 rtl:left-auto ltr:left-0 ltr:right-auto bg-brand-orange text-white font-black text-sm px-3.5 py-1.5 rounded-br-xl rtl:rounded-br-none rtl:rounded-bl-xl ltr:rounded-br-xl ltr:rounded-bl-none shadow-sm z-10">
+                            -41%
+                        </span>
+                        <!-- Product Image Box -->
+                        <div
+                            class="w-full sm:w-48 h-48 bg-brand-alt rounded-xl p-4 flex items-center justify-center relative flex-shrink-0 border border-brand-border/40">
+                            <button
+                                class="wishlist-btn absolute top-3 left-3 rtl:left-3 rtl:right-auto ltr:right-3 ltr:left-auto w-8 h-8 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange transition-colors shadow-sm">
+                                <i class="fa-regular fa-heart text-sm"></i>
+                            </button>
+                            <img src="assets/bundles/bundle-v8-57.png" alt="Dodge V8 Complete Bundle"
+                                class="max-h-full max-w-full object-contain drop-shadow-sm">
+                        </div>
+                        <!-- Product Details -->
+                        <div class="flex-1 w-full flex flex-col justify-between h-full">
+                            <div>
+                                <h3 class="font-bold text-base md:text-lg text-brand-text mb-2 leading-snug">
+                                    <span class="lang-ar">بكج دودج V8 المتكامل + هدية ستائر DHELL</span>
+                                    <span class="lang-en">Dodge V8 Complete Bundle + Free DHELL Sunshades</span>
+                                </h3>
+                                <!-- Ratings -->
+                                <div class="flex items-center gap-1.5 text-xs text-amber-400 mb-3 font-medium">
+                                    <div class="flex">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="text-brand-muted text-xs">(28 تقييم)</span>
+                                </div>
+                                <!-- Pricing -->
+                                <div class="flex items-baseline gap-3 mb-4">
+                                    <span class="text-2xl font-black text-brand-orange">380 <span
+                                            class="text-xs font-bold">SAR</span></span>
+                                    <span class="text-sm font-bold text-brand-muted line-through">650 SAR</span>
+                                </div>
+                            </div>
+                            <!-- Stock Progress Bar -->
+                            <div class="space-y-1.5 pt-2 border-t border-brand-border/40">
+                                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                                    <div class="bg-gradient-to-r from-brand-orange to-amber-400 h-2.5 rounded-full"
+                                        style="width: 80%;"></div>
+                                </div>
+                                <div class="flex justify-between text-xs font-bold text-brand-muted">
+                                    <span><span class="lang-ar">متبقي قطع قليلة فقط</span><span class="lang-en">Only a
+                                            few items left</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Super Discount / Free Delivery Banner (Matched Layout, Green Brand Color & Arabic Text) -->
+                <div
+                    class="border-2 border-dashed border-brand-green/40 bg-brand-green/5 rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 relative overflow-hidden">
+                    <div class="flex items-center gap-4 sm:gap-6 z-10">
+                        <div
+                            class="text-3xl sm:text-4xl font-black text-brand-green bg-brand-green/10 px-4 py-2 rounded-xl border border-brand-green/20 whitespace-nowrap">
+                            <span class="lang-ar">توصيل مجاني</span>
+                            <span class="lang-en">Free Delivery</span>
+                        </div>
+                        <div>
+                            <h4 class="font-black text-base sm:text-lg text-brand-green">
+                                <span class="lang-ar">توصيل مجاني على جميع الطلبات والعروض!</span>
+                                <span class="lang-en">Free delivery on all orders and bundles!</span>
+                            </h4>
+                            <p class="text-xs sm:text-sm text-brand-sec font-medium mt-0.5">
+                                <span class="lang-ar">استمتع بتوصيل مجاني لجميع مشترياتك تلقائياً دون الحاجة لإدخال
+                                    كود</span>
+                                <span class="lang-en">Enjoy free delivery automatically on all purchases without needing
+                                    a coupon code</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Area with Sidebar and Products Grid -->
+        <section class="py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Mobile Filter Toggle Button -->
+                <div class="lg:hidden mb-6">
+                    <button id="toggleSidebarBtn"
+                        class="w-full btn-primary py-3 px-6 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-sm">
+                        <i class="fa-solid fa-sliders text-lg"></i>
+                        <span class="lang-ar">تصفية وبحث المنتجات</span>
+                        <span class="lang-en">Search & Filter Products</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+
+                    <!-- SIDEBAR (Search, Filter by Category, Filter by Brand, Filter by Price) -->
+                    <aside id="shopSidebar"
+                        class="hidden lg:block lg:col-span-1 space-y-6 bg-white p-6 rounded-2xl border border-brand-border shadow-sm sticky top-28">
+
+                        <div class="flex items-center justify-between pb-4 border-b border-brand-border">
+                            <h2 class="font-black text-xl text-brand-text flex items-center gap-2">
+                                <i class="fa-solid fa-filter text-brand-green"></i>
+                                <span class="lang-ar">الفلاتر والبحث</span>
+                                <span class="lang-en">Filters & Search</span>
+                            </h2>
+                            <button id="resetFilters" class="text-xs text-brand-orange font-bold hover:underline">
+                                <span class="lang-ar">إعادة ضبط</span>
+                                <span class="lang-en">Reset All</span>
+                            </button>
+                        </div>
+
+                        <!-- 1. Search Bar -->
+                        <div class="space-y-2">
+                            <label class="block font-bold text-sm text-brand-text">
+                                <span class="lang-ar">البحث</span>
+                                <span class="lang-en">Search</span>
+                            </label>
+                            <div class="relative">
+                                <i
+                                    class="fa-solid fa-magnifying-glass absolute top-1/2 -translate-y-1/2 right-4 rtl:right-4 ltr:left-4 text-brand-muted"></i>
+                                <input id="shopSearch" type="search"
+                                    class="shop-input w-full border border-brand-border rounded-xl py-3 pr-10 pl-4 rtl:pr-10 rtl:pl-4 ltr:pl-10 ltr:pr-4 bg-brand-alt text-sm font-medium outline-none transition-all"
+                                    placeholder="ابحث باسم القطعة أو الرقم...">
+                            </div>
+                        </div>
+
+                        <!-- 2. Filter by Category -->
+                        <div class="space-y-3 pt-3 border-t border-brand-border">
+                            <h3 class="font-bold text-sm text-brand-text flex items-center justify-between">
+                                <span>
+                                    <span class="lang-ar">الأقسام</span>
+                                    <span class="lang-en">Categories</span>
+                                </span>
+                                <i class="fa-solid fa-layer-group text-brand-muted text-xs"></i>
+                            </h3>
+                            <div class="space-y-2">
+                                <label
+                                    class="flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-brand-alt transition-colors">
+                                    <input type="radio" name="categoryFilter" value="all" checked
+                                        class="w-4 h-4 text-brand-green accent-brand-green focus:ring-brand-green">
+                                    <span class="text-sm font-semibold text-brand-sec">
+                                        <span class="lang-ar">الكل</span>
+                                        <span class="lang-en">All Categories</span>
+                                    </span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-brand-alt transition-colors">
+                                    <input type="radio" name="categoryFilter" value="front"
+                                        class="w-4 h-4 text-brand-green accent-brand-green focus:ring-brand-green">
+                                    <span class="text-sm font-semibold text-brand-sec">
+                                        <span class="lang-ar">فحمات أمامية</span>
+                                        <span class="lang-en">Front Pads</span>
+                                    </span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-brand-alt transition-colors">
+                                    <input type="radio" name="categoryFilter" value="rear"
+                                        class="w-4 h-4 text-brand-green accent-brand-green focus:ring-brand-green">
+                                    <span class="text-sm font-semibold text-brand-sec">
+                                        <span class="lang-ar">فحمات خلفية</span>
+                                        <span class="lang-en">Rear Pads</span>
+                                    </span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-brand-alt transition-colors">
+                                    <input type="radio" name="categoryFilter" value="bundle"
+                                        class="w-4 h-4 text-brand-green accent-brand-green focus:ring-brand-green">
+                                    <span class="text-sm font-semibold text-brand-sec">
+                                        <span class="lang-ar">البكجات العائلية والخاصة</span>
+                                        <span class="lang-en">Bundles</span>
+                                    </span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-brand-alt transition-colors">
+                                    <input type="radio" name="categoryFilter" value="accessories"
+                                        class="w-4 h-4 text-brand-green accent-brand-green focus:ring-brand-green">
+                                    <span class="text-sm font-semibold text-brand-sec">
+                                        <span class="lang-ar">الإكسسوارات والستائر</span>
+                                        <span class="lang-en">Accessories</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 3. Filter by Brand -->
+                        <div class="space-y-3 pt-3 border-t border-brand-border">
+                            <h3 class="font-bold text-sm text-brand-text flex items-center justify-between">
+                                <span>
+                                    <span class="lang-ar">الماركة / العلامة</span>
+                                    <span class="lang-en">Filter by Brand</span>
+                                </span>
+                                <i class="fa-solid fa-copyright text-brand-muted text-xs"></i>
+                            </h3>
+                            <div class="space-y-2">
+                                <label
+                                    class="flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-brand-alt transition-colors">
+                                    <input type="checkbox" value="brembo"
+                                        class="brand-checkbox w-4 h-4 rounded text-brand-green accent-brand-green">
+                                    <span class="text-sm font-semibold text-brand-sec">Brembo (بريمبو)</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-brand-alt transition-colors">
+                                    <input type="checkbox" value="dhell"
+                                        class="brand-checkbox w-4 h-4 rounded text-brand-green accent-brand-green">
+                                    <span class="text-sm font-semibold text-brand-sec">DHELL (ديل)</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-brand-alt transition-colors">
+                                    <input type="checkbox" value="moharykat"
+                                        class="brand-checkbox w-4 h-4 rounded text-brand-green accent-brand-green">
+                                    <span class="text-sm font-semibold text-brand-sec">Moharykat Original</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 4. Filter by Price -->
+                        <div class="space-y-3 pt-3 border-t border-brand-border">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-bold text-sm text-brand-text">
+                                    <span class="lang-ar">تصفية بالسعر</span>
+                                    <span class="lang-en">Filter by Price</span>
+                                </h3>
+                                <span id="priceValue" class="text-sm font-black text-brand-green">700 SAR</span>
+                            </div>
+                            <input id="priceRange" type="range" min="100" max="1000" step="25" value="1000"
+                                class="w-full h-2 bg-brand-border rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-xs font-bold text-brand-muted">
+                                <span>100 SAR</span>
+                                <span>1000 SAR</span>
+                            </div>
+                        </div>
+
+                    </aside>
+
+                    <!-- MAIN PRODUCTS CONTAINER -->
+                    <main class="lg:col-span-3">
+
+                        <!-- Top Toolbar (Sorting, Results Count, View Toggle) -->
+                        <div
+                            class="bg-white p-4 rounded-2xl border border-brand-border shadow-sm mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="text-sm font-bold text-brand-sec">
+                                <span id="resultsCount" class="text-brand-green"></span>
+                            </div>
+
+                            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                                <div class="flex items-center gap-2">
+                                    <label for="sortProducts"
+                                        class="text-xs font-bold text-brand-muted whitespace-nowrap">
+                                        <span class="lang-ar">الترتيب:</span>
+                                        <span class="lang-en">Sort:</span>
+                                    </label>
+                                    <select id="sortProducts"
+                                        class="shop-input border border-brand-border rounded-xl px-3 py-2 bg-brand-alt font-bold text-xs outline-none">
+                                        <option value="default">الافتراضي</option>
+                                        <option value="low">السعر: الأقل أولاً</option>
+                                        <option value="high">السعر: الأعلى أولاً</option>
+                                        <option value="name">الاسم</option>
+                                    </select>
+                                </div>
+
+                                <div class="flex gap-1 border border-brand-border rounded-xl p-1 bg-brand-alt">
+                                    <button id="gridView"
+                                        class="view-btn active w-9 h-9 rounded-lg flex items-center justify-center text-sm transition-colors"
+                                        title="Grid View">
+                                        <i class="fa-solid fa-border-all"></i>
+                                    </button>
+                                    <button id="listView"
+                                        class="view-btn w-9 h-9 rounded-lg flex items-center justify-center text-sm transition-colors"
+                                        title="List View">
+                                        <i class="fa-solid fa-list"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Products Grid -->
+                        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                            <!-- Product 1 -->
+                            <article class="product-card premium-card p-4 group relative" data-category="front"
+                                data-brand="brembo" data-name="brembo p 18 034" data-price="280">
+                                <button
+                                    class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
+                                    aria-label="Wishlist">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                                <span
+                                    class="absolute top-6 left-6 z-10 bg-brand-orange text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                    <span class="lang-ar">تخفيض</span><span class="lang-en">Sale</span>
+                                </span>
+                                <div
+                                    class="product-image h-52 bg-brand-alt rounded-2xl mb-4 overflow-hidden flex justify-center items-center p-4 hover-img-zoom relative border border-brand-border/50">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
+                                        <span class="text-4xl font-black">MOHARYKAT</span>
+                                    </div>
+                                    <a href="#" class="contents"><img src="assets/products/brembo-p18034-front.png"
+                                            alt="Brembo P 18 034"
+                                            class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
+                                </div>
+                                <div class="px-2">
+                                    <div class="flex items-center gap-1 text-brand-green text-xs mb-2">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                        <span class="text-brand-muted mx-1 font-medium">(24)</span>
+                                    </div>
+                                    <h3
+                                        class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
+                                        <a href="#">Brembo P 18 034</a>
+                                    </h3>
+                                    <p class="text-xs text-brand-sec mb-4 min-h-8">
+                                        <span class="lang-ar">طقم فحمات أمامي بأداء ثابت للاستخدام اليومي</span>
+                                        <span class="lang-en">Front brake pads with consistent daily performance</span>
+                                    </p>
+                                    <div class="flex justify-between items-end mb-4">
+                                        <div>
+                                            <p class="text-xs text-brand-muted line-through font-bold">450 SAR</p>
+                                            <p class="text-2xl font-black text-brand-text">280 <span
+                                                    class="text-sm font-bold text-brand-sec">SAR</span></p>
+                                        </div>
+                                        <span class="text-[11px] text-brand-green font-bold"><i
+                                                class="fa-solid fa-circle-check"></i> <span
+                                                class="lang-ar">متوفر</span><span class="lang-en">In stock</span></span>
+                                    </div>
+                                    <button
+                                        class="add-cart w-full py-2.5 rounded-xl btn-secondary font-bold text-xs flex justify-center items-center gap-2">
+                                        <i class="fa-solid fa-cart-plus"></i><span class="lang-ar">أضف للسلة</span><span
+                                            class="lang-en">Add to Cart</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <!-- Product 2 -->
+                            <article class="product-card premium-card p-4 group relative" data-category="rear"
+                                data-brand="brembo" data-name="brembo p 23 175" data-price="220">
+                                <button
+                                    class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
+                                    aria-label="Wishlist">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                                <div
+                                    class="product-image h-52 bg-brand-alt rounded-2xl mb-4 overflow-hidden flex justify-center items-center p-4 hover-img-zoom relative border border-brand-border/50">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
+                                        <span class="text-4xl font-black">MOHARYKAT</span>
+                                    </div>
+                                    <a href="#" class="contents"><img src="assets/products/brembo-p23175-rear.png"
+                                            alt="Brembo P 23 175"
+                                            class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
+                                </div>
+                                <div class="px-2">
+                                    <div class="flex items-center gap-1 text-brand-green text-xs mb-2">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                        <span class="text-brand-muted mx-1 font-medium">(18)</span>
+                                    </div>
+                                    <h3
+                                        class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
+                                        <a href="#">Brembo P 23 175</a>
+                                    </h3>
+                                    <p class="text-xs text-brand-sec mb-4 min-h-8">
+                                        <span class="lang-ar">طقم فحمات خلفي متوافق مع دودج تشارجر</span>
+                                        <span class="lang-en">Rear brake pads compatible with Dodge Charger</span>
+                                    </p>
+                                    <div class="flex justify-between items-end mb-4">
+                                        <div>
+                                            <p class="text-xs text-transparent">.</p>
+                                            <p class="text-2xl font-black text-brand-text">220 <span
+                                                    class="text-sm font-bold text-brand-sec">SAR</span></p>
+                                        </div>
+                                        <span class="text-[11px] text-brand-green font-bold"><i
+                                                class="fa-solid fa-circle-check"></i> <span
+                                                class="lang-ar">متوفر</span><span class="lang-en">In stock</span></span>
+                                    </div>
+                                    <button
+                                        class="add-cart w-full py-2.5 rounded-xl btn-secondary font-bold text-xs flex justify-center items-center gap-2">
+                                        <i class="fa-solid fa-cart-plus"></i><span class="lang-ar">أضف للسلة</span><span
+                                            class="lang-en">Add to Cart</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <!-- Product 3 -->
+                            <article class="product-card premium-card p-4 group relative" data-category="accessories"
+                                data-brand="dhell" data-name="dhell sunshades" data-price="159">
+                                <button
+                                    class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
+                                    aria-label="Wishlist">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                                <span
+                                    class="absolute top-6 left-6 z-10 bg-brand-green text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                    <span class="lang-ar">جديد</span><span class="lang-en">New</span>
+                                </span>
+                                <div
+                                    class="product-image h-52 bg-brand-alt rounded-2xl mb-4 overflow-hidden flex justify-center items-center p-4 hover-img-zoom relative border border-brand-border/50">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
+                                        <span class="text-4xl font-black">MOHARYKAT</span>
+                                    </div>
+                                    <a href="#" class="contents"><img src="assets/products/dhell-sunshades.png"
+                                            alt="DHELL Sunshades"
+                                            class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
+                                </div>
+                                <div class="px-2">
+                                    <div class="flex items-center gap-1 text-brand-green text-xs mb-2">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                        <span class="text-brand-muted mx-1 font-medium">(31)</span>
+                                    </div>
+                                    <h3
+                                        class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
+                                        <a href="#">DHELL Sunshades</a>
+                                    </h3>
+                                    <p class="text-xs text-brand-sec mb-4 min-h-8">
+                                        <span class="lang-ar">ستائر شمسية بتغطية دقيقة وحماية أفضل للمقصورة</span>
+                                        <span class="lang-en">Precision-fit sunshades for better cabin protection</span>
+                                    </p>
+                                    <div class="flex justify-between items-end mb-4">
+                                        <div>
+                                            <p class="text-xs text-transparent">.</p>
+                                            <p class="text-2xl font-black text-brand-text">159 <span
+                                                    class="text-sm font-bold text-brand-sec">SAR</span></p>
+                                        </div>
+                                        <span class="text-[11px] text-brand-green font-bold"><i
+                                                class="fa-solid fa-circle-check"></i> <span
+                                                class="lang-ar">متوفر</span><span class="lang-en">In stock</span></span>
+                                    </div>
+                                    <button
+                                        class="add-cart w-full py-2.5 rounded-xl btn-secondary font-bold text-xs flex justify-center items-center gap-2">
+                                        <i class="fa-solid fa-cart-plus"></i><span class="lang-ar">أضف للسلة</span><span
+                                            class="lang-en">Add to Cart</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <!-- Product 4 -->
+                            <article class="product-card premium-card p-4 group relative" data-category="front"
+                                data-brand="brembo" data-name="brembo p 23 149" data-price="245">
+                                <button
+                                    class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
+                                    aria-label="Wishlist">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                                <div
+                                    class="product-image h-52 bg-brand-alt rounded-2xl mb-4 overflow-hidden flex justify-center items-center p-4 hover-img-zoom relative border border-brand-border/50">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
+                                        <span class="text-4xl font-black">MOHARYKAT</span>
+                                    </div>
+                                    <a href="#" class="contents"><img src="assets/products/brembo-p23149-front.png"
+                                            alt="Brembo P 23 149"
+                                            class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
+                                </div>
+                                <div class="px-2">
+                                    <div class="flex items-center gap-1 text-brand-green text-xs mb-2">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                        <span class="text-brand-muted mx-1 font-medium">(42)</span>
+                                    </div>
+                                    <h3
+                                        class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
+                                        <a href="#">Brembo P 23 149</a>
+                                    </h3>
+                                    <p class="text-xs text-brand-sec mb-4 min-h-8">
+                                        <span class="lang-ar">فحمات أمامية عالية التحمل لقيادة أكثر ثقة</span>
+                                        <span class="lang-en">Durable front brake pads for confident driving</span>
+                                    </p>
+                                    <div class="flex justify-between items-end mb-4">
+                                        <div>
+                                            <p class="text-xs text-transparent">.</p>
+                                            <p class="text-2xl font-black text-brand-text">245 <span
+                                                    class="text-sm font-bold text-brand-sec">SAR</span></p>
+                                        </div>
+                                        <span class="text-[11px] text-brand-green font-bold"><i
+                                                class="fa-solid fa-circle-check"></i> <span
+                                                class="lang-ar">متوفر</span><span class="lang-en">In stock</span></span>
+                                    </div>
+                                    <button
+                                        class="add-cart w-full py-2.5 rounded-xl btn-secondary font-bold text-xs flex justify-center items-center gap-2">
+                                        <i class="fa-solid fa-cart-plus"></i><span class="lang-ar">أضف للسلة</span><span
+                                            class="lang-en">Add to Cart</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <!-- Product 5 -->
+                            <article class="product-card premium-card p-4 group relative" data-category="bundle"
+                                data-brand="moharykat" data-name="dodge v6 bundle" data-price="380">
+                                <button
+                                    class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
+                                    aria-label="Wishlist">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                                <span
+                                    class="absolute top-6 left-6 z-10 bg-brand-orange text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                    <span class="lang-ar">الأكثر طلباً</span><span class="lang-en">Hot</span>
+                                </span>
+                                <div
+                                    class="product-image h-52 bg-brand-alt rounded-2xl mb-4 overflow-hidden flex justify-center items-center p-4 hover-img-zoom relative border border-brand-border/50">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
+                                        <span class="text-4xl font-black">MOHARYKAT</span>
+                                    </div>
+                                    <a href="#" class="contents"><img src="assets/bundles/bundle-v6.png"
+                                            alt="Dodge V6 Bundle"
+                                            class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
+                                </div>
+                                <div class="px-2">
+                                    <div class="flex items-center gap-1 text-brand-green text-xs mb-2">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                        <span class="text-brand-muted mx-1 font-medium">(56)</span>
+                                    </div>
+                                    <h3
+                                        class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
+                                        <a href="#">Dodge V6 Bundle</a>
+                                    </h3>
+                                    <p class="text-xs text-brand-sec mb-4 min-h-8">
+                                        <span class="lang-ar">بكج متكامل للفحمات الأمامية والخلفية مع توفير إضافي</span>
+                                        <span class="lang-en">Complete front and rear brake bundle with extra
+                                            savings</span>
+                                    </p>
+                                    <div class="flex justify-between items-end mb-4">
+                                        <div>
+                                            <p class="text-xs text-brand-muted line-through font-bold">550 SAR</p>
+                                            <p class="text-2xl font-black text-brand-text">380 <span
+                                                    class="text-sm font-bold text-brand-sec">SAR</span></p>
+                                        </div>
+                                        <span class="text-[11px] text-brand-green font-bold"><i
+                                                class="fa-solid fa-circle-check"></i> <span
+                                                class="lang-ar">متوفر</span><span class="lang-en">In stock</span></span>
+                                    </div>
+                                    <button
+                                        class="add-cart w-full py-2.5 rounded-xl btn-secondary font-bold text-xs flex justify-center items-center gap-2">
+                                        <i class="fa-solid fa-cart-plus"></i><span class="lang-ar">أضف للسلة</span><span
+                                            class="lang-en">Add to Cart</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <!-- Product 6 -->
+                            <article class="product-card premium-card p-4 group relative" data-category="bundle"
+                                data-brand="moharykat" data-name="dodge v8 complete bundle" data-price="380">
+                                <button
+                                    class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
+                                    aria-label="Wishlist">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                                <span
+                                    class="absolute top-6 left-6 z-10 bg-brand-orange text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                    <span class="lang-ar">تخفيض</span><span class="lang-en">Sale</span>
+                                </span>
+                                <div
+                                    class="product-image h-52 bg-brand-alt rounded-2xl mb-4 overflow-hidden flex justify-center items-center p-4 hover-img-zoom relative border border-brand-border/50">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
+                                        <span class="text-4xl font-black">MOHARYKAT</span>
+                                    </div>
+                                    <a href="#" class="contents"><img src="assets/bundles/bundle-v8-57.png"
+                                            alt="Dodge V8 Complete Bundle"
+                                            class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
+                                </div>
+                                <div class="px-2">
+                                    <div class="flex items-center gap-1 text-brand-green text-xs mb-2">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                        <span class="text-brand-muted mx-1 font-medium">(87)</span>
+                                    </div>
+                                    <h3
+                                        class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
+                                        <a href="#">Dodge V8 Complete Bundle</a>
+                                    </h3>
+                                    <p class="text-xs text-brand-sec mb-4 min-h-8">
+                                        <span class="lang-ar">الحزمة الأكثر طلباً مع هدية ستائر DHELL</span>
+                                        <span class="lang-en">Best-selling bundle with free DHELL sunshades</span>
+                                    </p>
+                                    <div class="flex justify-between items-end mb-4">
+                                        <div>
+                                            <p class="text-xs text-brand-muted line-through font-bold">650 SAR</p>
+                                            <p class="text-2xl font-black text-brand-text">380 <span
+                                                    class="text-sm font-bold text-brand-sec">SAR</span></p>
+                                        </div>
+                                        <span class="text-[11px] text-brand-green font-bold"><i
+                                                class="fa-solid fa-circle-check"></i> <span
+                                                class="lang-ar">متوفر</span><span class="lang-en">In stock</span></span>
+                                    </div>
+                                    <button
+                                        class="add-cart w-full py-2.5 rounded-xl btn-secondary font-bold text-xs flex justify-center items-center gap-2">
+                                        <i class="fa-solid fa-cart-plus"></i><span class="lang-ar">أضف للسلة</span><span
+                                            class="lang-en">Add to Cart</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <!-- Product 7 -->
+                            <article class="product-card premium-card p-4 group relative" data-category="bundle"
+                                data-brand="brembo" data-name="high performance srt" data-price="690">
+                                <button
+                                    class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
+                                    aria-label="Wishlist">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                                <div
+                                    class="product-image h-52 bg-brand-alt rounded-2xl mb-4 overflow-hidden flex justify-center items-center p-4 hover-img-zoom relative border border-brand-border/50">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
+                                        <span class="text-4xl font-black">MOHARYKAT</span>
+                                    </div>
+                                    <a href="#" class="contents"><img src="assets/bundles/bundle-srt-690.png"
+                                            alt="High Performance SRT"
+                                            class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
+                                </div>
+                                <div class="px-2">
+                                    <div class="flex items-center gap-1 text-brand-green text-xs mb-2">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                        <span class="text-brand-muted mx-1 font-medium">(35)</span>
+                                    </div>
+                                    <h3
+                                        class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
+                                        <a href="#">High Performance SRT</a>
+                                    </h3>
+                                    <p class="text-xs text-brand-sec mb-4 min-h-8">
+                                        <span class="lang-ar">حل كبح متقدم لسيارات الأداء العالي</span>
+                                        <span class="lang-en">Advanced braking solution for high-performance cars</span>
+                                    </p>
+                                    <div class="flex justify-between items-end mb-4">
+                                        <div>
+                                            <p class="text-xs text-brand-muted line-through font-bold">850 SAR</p>
+                                            <p class="text-2xl font-black text-brand-text">690 <span
+                                                    class="text-sm font-bold text-brand-sec">SAR</span></p>
+                                        </div>
+                                        <span class="text-[11px] text-brand-green font-bold"><i
+                                                class="fa-solid fa-circle-check"></i> <span
+                                                class="lang-ar">متوفر</span><span class="lang-en">In stock</span></span>
+                                    </div>
+                                    <button
+                                        class="add-cart w-full py-2.5 rounded-xl btn-secondary font-bold text-xs flex justify-center items-center gap-2">
+                                        <i class="fa-solid fa-cart-plus"></i><span class="lang-ar">أضف للسلة</span><span
+                                            class="lang-en">Add to Cart</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <!-- Product 8 -->
+                            <article class="product-card premium-card p-4 group relative" data-category="accessories"
+                                data-brand="dhell" data-name="dhell premium shade" data-price="175">
+                                <button
+                                    class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
+                                    aria-label="Wishlist">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                                <div
+                                    class="product-image h-52 bg-brand-alt rounded-2xl mb-4 overflow-hidden flex justify-center items-center p-4 hover-img-zoom relative border border-brand-border/50">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
+                                        <span class="text-4xl font-black">MOHARYKAT</span>
+                                    </div>
+                                    <a href="#" class="contents"><img src="assets/products/dhell-sunshades.png"
+                                            alt="DHELL Premium Shade"
+                                            class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
+                                </div>
+                                <div class="px-2">
+                                    <div class="flex items-center gap-1 text-brand-green text-xs mb-2">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                        <span class="text-brand-muted mx-1 font-medium">(22)</span>
+                                    </div>
+                                    <h3
+                                        class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
+                                        <a href="#">DHELL Premium Shade</a>
+                                    </h3>
+                                    <p class="text-xs text-brand-sec mb-4 min-h-8">
+                                        <span class="lang-ar">حماية عملية من الحرارة بتصميم أنيق</span>
+                                        <span class="lang-en">Practical heat protection with an elegant design</span>
+                                    </p>
+                                    <div class="flex justify-between items-end mb-4">
+                                        <div>
+                                            <p class="text-xs text-transparent">.</p>
+                                            <p class="text-2xl font-black text-brand-text">175 <span
+                                                    class="text-sm font-bold text-brand-sec">SAR</span></p>
+                                        </div>
+                                        <span class="text-[11px] text-brand-green font-bold"><i
+                                                class="fa-solid fa-circle-check"></i> <span
+                                                class="lang-ar">متوفر</span><span class="lang-en">In stock</span></span>
+                                    </div>
+                                    <button
+                                        class="add-cart w-full py-2.5 rounded-xl btn-secondary font-bold text-xs flex justify-center items-center gap-2">
+                                        <i class="fa-solid fa-cart-plus"></i><span class="lang-ar">أضف للسلة</span><span
+                                            class="lang-en">Add to Cart</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                        </div>
+
+                        <!-- Empty State -->
+                        <div id="emptyState" class="hidden text-center py-16 premium-card bg-white mt-6">
+                            <i class="fa-solid fa-box-open text-5xl text-brand-border mb-4"></i>
+                            <h3 class="text-2xl font-black mb-2">
+                                <span class="lang-ar">لا توجد منتجات مطابقة</span>
+                                <span class="lang-en">No matching products</span>
+                            </h3>
+                            <p class="text-brand-muted text-sm">
+                                <span class="lang-ar">جرّب تغيير فلاتر البحث أو السعر.</span>
+                                <span class="lang-en">Try changing search filters or price range.</span>
+                            </p>
+                        </div>
+
+                    </main>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Need Help Banner -->
+        <section class="py-12 bg-white border-t border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div
+                    class="rounded-3xl bg-brand-green overflow-hidden relative p-8 md:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
+                    <div class="absolute inset-0 opacity-10"
+                        style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:24px 24px">
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-brand-orange font-bold text-sm mb-1">
+                            <span class="lang-ar">تحتاج مساعدة؟</span><span class="lang-en">Need help?</span>
+                        </p>
+                        <h2 class="text-2xl md:text-3xl font-black mb-2">
+                            <span class="lang-ar">دعنا نساعدك في اختيار القطعة المناسبة لسيارتك</span>
+                            <span class="lang-en">Let us help you choose the right part for your car</span>
+                        </h2>
+                        <p class="text-green-100 text-sm">
+                            <span class="lang-ar">أرسل رقم الهيكل أو نوع السيارة وسنرشح لك الخيارات المتوافقة.</span>
+                            <span class="lang-en">Send vehicle VIN or model and we'll recommend compatible
+                                options.</span>
+                        </p>
+                    </div>
+                    <a href="https://wa.me/966XXXXXXXXX"
+                        class="relative z-10 bg-white text-brand-green hover:bg-brand-alt transition-colors px-6 py-3.5 rounded-full font-black text-sm whitespace-nowrap shadow-sm">
+                        <i class="fa-brands fa-whatsapp ml-2"></i>
+                        <span class="lang-ar">تواصل عبر واتساب</span>
+                        <span class="lang-en">Chat on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white pt-16 pb-10 border-t border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+
+                <!-- Brand Info -->
+                <div class="lg:col-span-1">
+                    <img src="assets/logo/logo.png" alt="Moharykat Logo" class="h-10 mb-6 filter brightness-0">
+                    <p class="text-brand-sec text-sm leading-relaxed mb-6 font-medium">
+                        <span class="lang-ar">وجهتك الفاخرة لقطع غيار دودج الأصلية. نقدم لك مزيجاً من الأداء والأمان
+                            والتصميم العصري.</span>
+                        <span class="lang-en">Your premium destination for genuine Dodge parts. We offer a blend of
+                            performance, safety, and modern design.</span>
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-brand-alt border border-brand-border flex items-center justify-center text-brand-sec hover:bg-brand-green hover:text-white hover:border-brand-green transition-colors"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-brand-alt border border-brand-border flex items-center justify-center text-brand-sec hover:bg-brand-green hover:text-white hover:border-brand-green transition-colors"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-brand-alt border border-brand-border flex items-center justify-center text-brand-sec hover:bg-brand-green hover:text-white hover:border-brand-green transition-colors"><i
+                                class="fa-brands fa-snapchat"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links 1 -->
+                <div>
+                    <h4 class="font-bold text-brand-text mb-5 text-base"><span class="lang-ar">المتجر</span><span
+                            class="lang-en">Shop</span></h4>
+                    <ul class="space-y-3 text-sm text-brand-sec font-medium">
+                        <li><a href="#" class="hover:text-brand-green transition-colors"><span class="lang-ar">عروض
+                                    البكجات</span><span class="lang-en">Bundle Offers</span></a></li>
+                        <li><a href="#" class="hover:text-brand-green transition-colors"><span class="lang-ar">فحمات
+                                    بريمبو الأمامية</span><span class="lang-en">Brembo Front Pads</span></a></li>
+                        <li><a href="#" class="hover:text-brand-green transition-colors"><span class="lang-ar">فحمات
+                                    بريمبو الخلفية</span><span class="lang-en">Brembo Rear Pads</span></a></li>
+                        <li><a href="#" class="hover:text-brand-green transition-colors"><span class="lang-ar">ستائر
+                                    وإكسسوارات</span><span class="lang-en">Sunshades & Accessories</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Links 2 -->
+                <div>
+                    <h4 class="font-bold text-brand-text mb-5 text-base"><span class="lang-ar">الدعم</span><span
+                            class="lang-en">Support</span></h4>
+                    <ul class="space-y-3 text-sm text-brand-sec font-medium">
+                        <li><a href="#" class="hover:text-brand-green transition-colors"><span class="lang-ar">الشحن
+                                    والتوصيل</span><span class="lang-en">Shipping & Delivery</span></a></li>
+                        <li><a href="#" class="hover:text-brand-green transition-colors"><span class="lang-ar">سياسة
+                                    الاسترجاع والضمان</span><span class="lang-en">Returns & Warranty</span></a></li>
+                        <li><a href="#" class="hover:text-brand-green transition-colors"><span class="lang-ar">تتبع
+                                    الطلب</span><span class="lang-en">Track Order</span></a></li>
+                        <li><a href="#" class="hover:text-brand-green transition-colors"><span class="lang-ar">الأسئلة
+                                    الشائعة</span><span class="lang-en">FAQs</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="font-bold text-brand-text mb-5 text-base"><span class="lang-ar">النشرة
+                            البريدية</span><span class="lang-en">Newsletter</span></h4>
+                    <p class="text-xs text-brand-sec mb-4 font-medium"><span class="lang-ar">اشترك ليصلك جديد العروض
+                            والتخفيضات الحصرية.</span><span class="lang-en">Subscribe to receive exclusive offers and
+                            discounts.</span></p>
+                    <form class="flex relative">
+                        <input type="email" placeholder="Email address..."
+                            class="w-full bg-brand-alt border border-brand-border rounded-full py-2.5 px-4 text-xs text-brand-text focus:outline-none focus:border-brand-green transition-colors"
+                            dir="ltr">
+                        <button type="submit"
+                            class="absolute top-1 bottom-1 right-1 rtl:right-auto rtl:left-1 btn-primary rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="fa-solid fa-paper-plane text-xs rtl:scale-x-[-1]"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-brand-border pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-brand-muted font-medium">&copy; 2026 <span class="lang-ar">محركات. جميع الحقوق
+                        محفوظة.</span><span class="lang-en">Moharykat. All rights reserved.</span></p>
+                <div class="flex gap-4">
+                    <i
+                        class="fa-brands fa-cc-visa text-2xl text-brand-border hover:text-brand-sec transition-colors"></i>
+                    <i
+                        class="fa-brands fa-cc-mastercard text-2xl text-brand-border hover:text-brand-sec transition-colors"></i>
+                    <i
+                        class="fa-brands fa-cc-apple-pay text-2xl text-brand-border hover:text-brand-sec transition-colors"></i>
+                    <i
+                        class="fa-solid fa-money-bill-wave text-2xl text-brand-border hover:text-brand-sec transition-colors"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/966XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="whatsapp-float"
+        aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ once: true, offset: 40, duration: 700, easing: 'ease-out-cubic' });
+            const html = document.documentElement;
+            const toggles = [document.getElementById('langToggle'), document.getElementById('mobileLangToggle')];
+            html.setAttribute('lang', 'ar');
+
+            toggles.forEach(btn => btn && btn.addEventListener('click', () => {
+                const next = html.getAttribute('lang') === 'ar' ? 'en' : 'ar';
+                html.setAttribute('lang', next);
+                document.getElementById('shopSearch').placeholder = next === 'ar' ? 'ابحث باسم القطعة أو الرقم...' : 'Search by part name or number...';
+                updateProducts();
+            }));
+
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('mobileMenu');
+            const toggleMenu = () => {
+                menu.classList.toggle('hidden'); menu.classList.toggle('flex');
+                document.body.classList.toggle('overflow-hidden');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.toggle('fa-bars-staggered'); icon.classList.toggle('fa-xmark');
+            };
+            menuBtn && menuBtn.addEventListener('click', toggleMenu);
+            document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', toggleMenu));
+
+            // Mobile Sidebar Toggle
+            const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+            const shopSidebar = document.getElementById('shopSidebar');
+            toggleSidebarBtn && toggleSidebarBtn.addEventListener('click', () => {
+                shopSidebar.classList.toggle('hidden');
+            });
+
+            // Filtering & Search
+            const grid = document.getElementById('productsGrid');
+            const cards = [...document.querySelectorAll('.product-card')];
+            const searchInput = document.getElementById('shopSearch');
+            const countDisplay = document.getElementById('resultsCount');
+            const emptyState = document.getElementById('emptyState');
+            const sortSelect = document.getElementById('sortProducts');
+            const priceRange = document.getElementById('priceRange');
+            const priceValue = document.getElementById('priceValue');
+            const resetBtn = document.getElementById('resetFilters');
+
+            function getSelectedCategory() {
+                const selected = document.querySelector('input[name="categoryFilter"]:checked');
+                return selected ? selected.value : 'all';
+            }
+
+            function getSelectedBrands() {
+                const checked = [...document.querySelectorAll('.brand-checkbox:checked')];
+                return checked.map(cb => cb.value);
+            }
+
+            function updateProducts() {
+                const query = searchInput.value.trim().toLowerCase();
+                const category = getSelectedCategory();
+                const selectedBrands = getSelectedBrands();
+                const maxPrice = parseFloat(priceRange.value);
+
+                priceValue.textContent = maxPrice + ' SAR';
+
+                let visibleCount = 0;
+
+                cards.forEach(card => {
+                    const cardCategory = card.dataset.category;
+                    const cardBrand = card.dataset.brand;
+                    const cardPrice = parseFloat(card.dataset.price);
+                    const cardText = card.textContent.toLowerCase() + ' ' + (card.dataset.name || '');
+
+                    const matchesSearch = !query || cardText.includes(query);
+                    const matchesCategory = category === 'all' || cardCategory === category;
+                    const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(cardBrand);
+                    const matchesPrice = cardPrice <= maxPrice;
+
+                    const isVisible = matchesSearch && matchesCategory && matchesBrand && matchesPrice;
+                    card.classList.toggle('hidden-product', !isVisible);
+
+                    if (isVisible) visibleCount++;
+                });
+
+                if (html.getAttribute('lang') === 'ar') {
+                    countDisplay.innerHTML = `عرض <span class="font-black">${visibleCount}</span> من أصل <span class="font-black">${cards.length}</span> منتج`;
+                } else {
+                    countDisplay.innerHTML = `Showing <span class="font-black">${visibleCount}</span> of <span class="font-black">${cards.length}</span> products`;
+                }
+
+                emptyState.classList.toggle('hidden', visibleCount !== 0);
+            }
+
+            // Event Listeners for Filtering
+            searchInput.addEventListener('input', updateProducts);
+            document.querySelectorAll('input[name="categoryFilter"]').forEach(r => r.addEventListener('change', updateProducts));
+            document.querySelectorAll('.brand-checkbox').forEach(cb => cb.addEventListener('change', updateProducts));
+            priceRange.addEventListener('input', updateProducts);
+
+            resetBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                document.querySelector('input[name="categoryFilter"][value="all"]').checked = true;
+                document.querySelectorAll('.brand-checkbox').forEach(cb => cb.checked = false);
+                priceRange.value = 1000;
+                sortSelect.value = 'default';
+                updateProducts();
+            });
+
+            // Sorting
+            sortSelect.addEventListener('change', () => {
+                const val = sortSelect.value;
+                const sortedCards = [...cards].sort((a, b) => {
+                    if (val === 'low') return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+                    if (val === 'high') return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+                    if (val === 'name') return a.dataset.name.localeCompare(b.dataset.name);
+                    return cards.indexOf(a) - cards.indexOf(b);
+                });
+                sortedCards.forEach(card => grid.appendChild(card));
+            });
+
+            // View Switcher (Grid / List)
+            const gridViewBtn = document.getElementById('gridView');
+            const listViewBtn = document.getElementById('listView');
+
+            gridViewBtn.addEventListener('click', () => {
+                grid.classList.remove('list-view');
+                gridViewBtn.classList.add('active');
+                listViewBtn.classList.remove('active');
+            });
+
+            listViewBtn.addEventListener('click', () => {
+                grid.classList.add('list-view');
+                listViewBtn.classList.add('active');
+                gridViewBtn.classList.remove('active');
+            });
+
+            // Cart & Wishlist Interactions
+            let cartCount = 0;
+            const cartBadges = document.querySelectorAll('.fa-bag-shopping + span');
+
+            document.querySelectorAll('.add-cart').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    cartCount++;
+                    cartBadges.forEach(b => b.textContent = cartCount);
+                    btn.classList.remove('btn-secondary');
+                    btn.classList.add('btn-primary');
+                    const isAr = html.getAttribute('lang') === 'ar';
+                    btn.innerHTML = isAr ? '<i class="fa-solid fa-check"></i> تمت الإضافة' : '<i class="fa-solid fa-check"></i> Added';
+                    setTimeout(() => {
+                        btn.classList.remove('btn-primary');
+                        btn.classList.add('btn-secondary');
+                        btn.innerHTML = '<i class="fa-solid fa-cart-plus"></i><span class="lang-ar">أضف للسلة</span><span class="lang-en">Add to Cart</span>';
+                    }, 1300);
+                });
+            });
+
+            document.querySelectorAll('.wishlist-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const icon = btn.querySelector('i');
+                    icon.classList.toggle('fa-regular');
+                    icon.classList.toggle('fa-solid');
+                    btn.classList.toggle('text-brand-orange');
+                });
+            });
+
+            updateProducts();
+        });
+    </script>
+</body>
+
+</html>

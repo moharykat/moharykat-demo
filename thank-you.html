@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شكراً لطلبك | Moharykat محركات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#005B25', 'green-hover': '#00471c', orange: '#F04F25',
+                            bg: '#FFFFFF', alt: '#F8FAF8', text: '#111827', sec: '#374151',
+                            muted: '#6B7280', border: '#E5E7EB'
+                        }
+                    },
+                    fontFamily: { cairo: ['Cairo', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #F8FAF8; color: #111827; }
+        html[lang="en"] .lang-ar { display: none !important; }
+        html[lang="ar"] .lang-en { display: none !important; }
+        html[lang="en"] { direction: ltr; }
+        html[lang="ar"] { direction: rtl; }
+        .btn-primary { background-color: #005B25; color: white; transition: all 0.3s ease; }
+        .btn-primary:hover { background-color: #00471c; transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(0, 91, 37, 0.3); }
+        .premium-card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-green selection:text-white min-h-screen flex flex-col">
+
+    <header class="bg-white border-b border-brand-border py-5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+            <a href="index.html">
+                <img class="h-12 w-auto filter brightness-0" src="assets/logo/logo.png" alt="Moharykat Logo">
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-1 flex items-center justify-center py-16 px-4">
+        <div class="premium-card p-8 md:p-12 max-w-lg w-full text-center">
+            <div class="w-20 h-20 rounded-full bg-brand-green/10 border border-brand-green/20 flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-circle-check text-4xl text-brand-green"></i>
+            </div>
+
+            <h1 class="text-3xl md:text-4xl font-black text-brand-text mb-3">
+                <span class="lang-ar">شكراً لطلبك!</span>
+                <span class="lang-en">Thank You for Your Order!</span>
+            </h1>
+
+            <p class="text-brand-sec font-medium mb-6 leading-relaxed">
+                <span class="lang-ar">تم استلام طلبك بنجاح. سنتواصل معك قريباً لتأكيد التفاصيل.</span>
+                <span class="lang-en">Your order has been received. We'll contact you soon to confirm the details.</span>
+            </p>
+
+            <div class="bg-brand-alt rounded-2xl p-5 border border-brand-border mb-6">
+                <p class="text-xs font-bold text-brand-muted uppercase tracking-wider mb-1">
+                    <span class="lang-ar">رقم الطلب</span><span class="lang-en">Order Number</span>
+                </p>
+                <p id="orderNumber" class="text-2xl font-black text-brand-green" dir="ltr">MHK-00000000</p>
+            </div>
+
+            <div class="flex items-center justify-center gap-3 text-brand-sec font-bold text-sm mb-8">
+                <i class="fa-solid fa-truck-fast text-brand-orange text-lg"></i>
+                <span class="lang-ar">التوصيل المتوقع: 2–4 أيام عمل</span>
+                <span class="lang-en">Estimated delivery: 2–4 business days</span>
+            </div>
+
+            <a href="index.html" class="btn-primary inline-flex items-center gap-3 px-10 py-4 rounded-full font-black text-lg">
+                <span class="lang-ar">العودة للرئيسية</span>
+                <span class="lang-en">Back to Home</span>
+                <i class="fa-solid fa-arrow-left lang-ar"></i>
+                <i class="fa-solid fa-arrow-right lang-en"></i>
+            </a>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-brand-border py-6">
+        <p class="text-center text-sm text-brand-muted font-medium">&copy; 2026 Moharykat</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.documentElement.setAttribute('lang', 'ar');
+            try {
+                var raw = sessionStorage.getItem('moharykat_last_order');
+                if (raw) {
+                    var order = JSON.parse(raw);
+                    if (order.orderNumber) {
+                        document.getElementById('orderNumber').textContent = order.orderNumber;
+                    }
+                }
+            } catch (e) { /* use placeholder */ }
+        });
+    </script>
+</body>
+
+</html>
