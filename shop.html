@@ -429,8 +429,8 @@
                 <!-- Deals Grid (Horizontal Layout Cards as in Reference Image) -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                     <!-- Deal Card 1 -->
-                    <div
-                        class="bg-white border border-brand-border rounded-2xl p-5 relative flex flex-col sm:flex-row items-center gap-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="bg-white border border-brand-border rounded-2xl p-5 relative flex flex-col sm:flex-row items-center gap-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                        onclick="window.location.href='./product.html'">
                         <!-- Discount Badge -->
                         <span
                             class="absolute top-0 right-0 rtl:right-0 rtl:left-auto ltr:left-0 ltr:right-auto bg-brand-orange text-white font-black text-sm px-3.5 py-1.5 rounded-br-xl rtl:rounded-br-none rtl:rounded-bl-xl ltr:rounded-br-xl ltr:rounded-bl-none shadow-sm z-10">
@@ -439,7 +439,7 @@
                         <!-- Product Image Box -->
                         <div
                             class="w-full sm:w-48 h-48 bg-brand-alt rounded-xl p-4 flex items-center justify-center relative flex-shrink-0 border border-brand-border/40">
-                            <button
+                            <button onclick="event.stopPropagation()"
                                 class="wishlist-btn absolute top-3 left-3 rtl:left-3 rtl:right-auto ltr:right-3 ltr:left-auto w-8 h-8 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange transition-colors shadow-sm">
                                 <i class="fa-regular fa-heart text-sm"></i>
                             </button>
@@ -450,8 +450,10 @@
                         <div class="flex-1 w-full flex flex-col justify-between h-full">
                             <div>
                                 <h3 class="font-bold text-base md:text-lg text-brand-text mb-2 leading-snug">
-                                    <span class="lang-ar">بكج فحمات دودج V6 المتكامل (أمامية + خلفية)</span>
-                                    <span class="lang-en">Dodge V6 Complete Brake Pads Bundle (Front + Rear)</span>
+                                    <a href="./product.html" onclick="event.stopPropagation()">
+                                        <span class="lang-ar">بكج فحمات دودج V6 المتكامل (أمامية + خلفية)</span>
+                                        <span class="lang-en">Dodge V6 Complete Brake Pads Bundle (Front + Rear)</span>
+                                    </a>
                                 </h3>
                                 <!-- Ratings -->
                                 <div class="flex items-center gap-1.5 text-xs text-amber-400 mb-3 font-medium">
@@ -486,8 +488,8 @@
                     </div>
 
                     <!-- Deal Card 2 -->
-                    <div
-                        class="bg-white border border-brand-border rounded-2xl p-5 relative flex flex-col sm:flex-row items-center gap-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="bg-white border border-brand-border rounded-2xl p-5 relative flex flex-col sm:flex-row items-center gap-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                        onclick="window.location.href='./product.html'">
                         <!-- Discount Badge -->
                         <span
                             class="absolute top-0 right-0 rtl:right-0 rtl:left-auto ltr:left-0 ltr:right-auto bg-brand-orange text-white font-black text-sm px-3.5 py-1.5 rounded-br-xl rtl:rounded-br-none rtl:rounded-bl-xl ltr:rounded-br-xl ltr:rounded-bl-none shadow-sm z-10">
@@ -496,7 +498,7 @@
                         <!-- Product Image Box -->
                         <div
                             class="w-full sm:w-48 h-48 bg-brand-alt rounded-xl p-4 flex items-center justify-center relative flex-shrink-0 border border-brand-border/40">
-                            <button
+                            <button onclick="event.stopPropagation()"
                                 class="wishlist-btn absolute top-3 left-3 rtl:left-3 rtl:right-auto ltr:right-3 ltr:left-auto w-8 h-8 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange transition-colors shadow-sm">
                                 <i class="fa-regular fa-heart text-sm"></i>
                             </button>
@@ -507,8 +509,10 @@
                         <div class="flex-1 w-full flex flex-col justify-between h-full">
                             <div>
                                 <h3 class="font-bold text-base md:text-lg text-brand-text mb-2 leading-snug">
-                                    <span class="lang-ar">بكج دودج V8 المتكامل + هدية ستائر DHELL</span>
-                                    <span class="lang-en">Dodge V8 Complete Bundle + Free DHELL Sunshades</span>
+                                    <a href="./product.html" onclick="event.stopPropagation()">
+                                        <span class="lang-ar">بكج دودج V8 المتكامل + هدية ستائر DHELL</span>
+                                        <span class="lang-en">Dodge V8 Complete Bundle + Free DHELL Sunshades</span>
+                                    </a>
                                 </h3>
                                 <!-- Ratings -->
                                 <div class="flex items-center gap-1.5 text-xs text-amber-400 mb-3 font-medium">
@@ -768,8 +772,8 @@
                         <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
                             <!-- Product 1 -->
-                            <article class="product-card premium-card p-4 group relative" data-category="front"
-                                data-brand="brembo" data-name="brembo p 18 034" data-price="280">
+                            <article class="product-card premium-card p-4 group relative cursor-pointer"
+                                data-category="front" data-brand="brembo" data-name="brembo p 18 034" data-price="280">
                                 <button
                                     class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
                                     aria-label="Wishlist">
@@ -785,8 +789,8 @@
                                         class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
                                         <span class="text-4xl font-black">MOHARYKAT</span>
                                     </div>
-                                    <a href="#" class="contents"><img src="assets/products/brembo-p18034-front.png"
-                                            alt="Brembo P 18 034"
+                                    <a href="./product.html" class="contents"><img
+                                            src="assets/products/brembo-p18034-front.png" alt="Brembo P 18 034"
                                             class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
                                 </div>
                                 <div class="px-2">
@@ -798,7 +802,7 @@
                                     </div>
                                     <h3
                                         class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
-                                        <a href="#">Brembo P 18 034</a>
+                                        <a href="./product.html">Brembo P 18 034</a>
                                     </h3>
                                     <p class="text-xs text-brand-sec mb-4 min-h-8">
                                         <span class="lang-ar">طقم فحمات أمامي بأداء ثابت للاستخدام اليومي</span>
@@ -823,8 +827,8 @@
                             </article>
 
                             <!-- Product 2 -->
-                            <article class="product-card premium-card p-4 group relative" data-category="rear"
-                                data-brand="brembo" data-name="brembo p 23 175" data-price="220">
+                            <article class="product-card premium-card p-4 group relative cursor-pointer"
+                                data-category="rear" data-brand="brembo" data-name="brembo p 23 175" data-price="220">
                                 <button
                                     class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
                                     aria-label="Wishlist">
@@ -836,8 +840,8 @@
                                         class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
                                         <span class="text-4xl font-black">MOHARYKAT</span>
                                     </div>
-                                    <a href="#" class="contents"><img src="assets/products/brembo-p23175-rear.png"
-                                            alt="Brembo P 23 175"
+                                    <a href="./product.html" class="contents"><img
+                                            src="assets/products/brembo-p23175-rear.png" alt="Brembo P 23 175"
                                             class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
                                 </div>
                                 <div class="px-2">
@@ -849,7 +853,7 @@
                                     </div>
                                     <h3
                                         class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
-                                        <a href="#">Brembo P 23 175</a>
+                                        <a href="./product.html">Brembo P 23 175</a>
                                     </h3>
                                     <p class="text-xs text-brand-sec mb-4 min-h-8">
                                         <span class="lang-ar">طقم فحمات خلفي متوافق مع دودج تشارجر</span>
@@ -874,8 +878,9 @@
                             </article>
 
                             <!-- Product 3 -->
-                            <article class="product-card premium-card p-4 group relative" data-category="accessories"
-                                data-brand="dhell" data-name="dhell sunshades" data-price="159">
+                            <article class="product-card premium-card p-4 group relative cursor-pointer"
+                                data-category="accessories" data-brand="dhell" data-name="dhell sunshades"
+                                data-price="159">
                                 <button
                                     class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
                                     aria-label="Wishlist">
@@ -891,8 +896,8 @@
                                         class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
                                         <span class="text-4xl font-black">MOHARYKAT</span>
                                     </div>
-                                    <a href="#" class="contents"><img src="assets/products/dhell-sunshades.png"
-                                            alt="DHELL Sunshades"
+                                    <a href="./product.html" class="contents"><img
+                                            src="assets/products/dhell-sunshades.png" alt="DHELL Sunshades"
                                             class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
                                 </div>
                                 <div class="px-2">
@@ -904,7 +909,7 @@
                                     </div>
                                     <h3
                                         class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
-                                        <a href="#">DHELL Sunshades</a>
+                                        <a href="./product.html">DHELL Sunshades</a>
                                     </h3>
                                     <p class="text-xs text-brand-sec mb-4 min-h-8">
                                         <span class="lang-ar">ستائر شمسية بتغطية دقيقة وحماية أفضل للمقصورة</span>
@@ -929,8 +934,8 @@
                             </article>
 
                             <!-- Product 4 -->
-                            <article class="product-card premium-card p-4 group relative" data-category="front"
-                                data-brand="brembo" data-name="brembo p 23 149" data-price="245">
+                            <article class="product-card premium-card p-4 group relative cursor-pointer"
+                                data-category="front" data-brand="brembo" data-name="brembo p 23 149" data-price="245">
                                 <button
                                     class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
                                     aria-label="Wishlist">
@@ -942,8 +947,8 @@
                                         class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
                                         <span class="text-4xl font-black">MOHARYKAT</span>
                                     </div>
-                                    <a href="#" class="contents"><img src="assets/products/brembo-p23149-front.png"
-                                            alt="Brembo P 23 149"
+                                    <a href="./product.html" class="contents"><img
+                                            src="assets/products/brembo-p23149-front.png" alt="Brembo P 23 149"
                                             class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
                                 </div>
                                 <div class="px-2">
@@ -955,7 +960,7 @@
                                     </div>
                                     <h3
                                         class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
-                                        <a href="#">Brembo P 23 149</a>
+                                        <a href="./product.html">Brembo P 23 149</a>
                                     </h3>
                                     <p class="text-xs text-brand-sec mb-4 min-h-8">
                                         <span class="lang-ar">فحمات أمامية عالية التحمل لقيادة أكثر ثقة</span>
@@ -980,8 +985,9 @@
                             </article>
 
                             <!-- Product 5 -->
-                            <article class="product-card premium-card p-4 group relative" data-category="bundle"
-                                data-brand="moharykat" data-name="dodge v6 bundle" data-price="380">
+                            <article class="product-card premium-card p-4 group relative cursor-pointer"
+                                data-category="bundle" data-brand="moharykat" data-name="dodge v6 bundle"
+                                data-price="380">
                                 <button
                                     class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
                                     aria-label="Wishlist">
@@ -997,7 +1003,7 @@
                                         class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
                                         <span class="text-4xl font-black">MOHARYKAT</span>
                                     </div>
-                                    <a href="#" class="contents"><img src="assets/bundles/bundle-v6.png"
+                                    <a href="./product.html" class="contents"><img src="assets/bundles/bundle-v6.png"
                                             alt="Dodge V6 Bundle"
                                             class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
                                 </div>
@@ -1010,7 +1016,7 @@
                                     </div>
                                     <h3
                                         class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
-                                        <a href="#">Dodge V6 Bundle</a>
+                                        <a href="./product.html">Dodge V6 Bundle</a>
                                     </h3>
                                     <p class="text-xs text-brand-sec mb-4 min-h-8">
                                         <span class="lang-ar">بكج متكامل للفحمات الأمامية والخلفية مع توفير إضافي</span>
@@ -1036,8 +1042,9 @@
                             </article>
 
                             <!-- Product 6 -->
-                            <article class="product-card premium-card p-4 group relative" data-category="bundle"
-                                data-brand="moharykat" data-name="dodge v8 complete bundle" data-price="380">
+                            <article class="product-card premium-card p-4 group relative cursor-pointer"
+                                data-category="bundle" data-brand="moharykat" data-name="dodge v8 complete bundle"
+                                data-price="380">
                                 <button
                                     class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
                                     aria-label="Wishlist">
@@ -1053,7 +1060,7 @@
                                         class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
                                         <span class="text-4xl font-black">MOHARYKAT</span>
                                     </div>
-                                    <a href="#" class="contents"><img src="assets/bundles/bundle-v8-57.png"
+                                    <a href="./product.html" class="contents"><img src="assets/bundles/bundle-v8-57.png"
                                             alt="Dodge V8 Complete Bundle"
                                             class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
                                 </div>
@@ -1066,7 +1073,7 @@
                                     </div>
                                     <h3
                                         class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
-                                        <a href="#">Dodge V8 Complete Bundle</a>
+                                        <a href="./product.html">Dodge V8 Complete Bundle</a>
                                     </h3>
                                     <p class="text-xs text-brand-sec mb-4 min-h-8">
                                         <span class="lang-ar">الحزمة الأكثر طلباً مع هدية ستائر DHELL</span>
@@ -1091,8 +1098,9 @@
                             </article>
 
                             <!-- Product 7 -->
-                            <article class="product-card premium-card p-4 group relative" data-category="bundle"
-                                data-brand="brembo" data-name="high performance srt" data-price="690">
+                            <article class="product-card premium-card p-4 group relative cursor-pointer"
+                                data-category="bundle" data-brand="brembo" data-name="high performance srt"
+                                data-price="690">
                                 <button
                                     class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
                                     aria-label="Wishlist">
@@ -1104,8 +1112,8 @@
                                         class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
                                         <span class="text-4xl font-black">MOHARYKAT</span>
                                     </div>
-                                    <a href="#" class="contents"><img src="assets/bundles/bundle-srt-690.png"
-                                            alt="High Performance SRT"
+                                    <a href="./product.html" class="contents"><img
+                                            src="assets/bundles/bundle-srt-690.png" alt="High Performance SRT"
                                             class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
                                 </div>
                                 <div class="px-2">
@@ -1117,7 +1125,7 @@
                                     </div>
                                     <h3
                                         class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
-                                        <a href="#">High Performance SRT</a>
+                                        <a href="./product.html">High Performance SRT</a>
                                     </h3>
                                     <p class="text-xs text-brand-sec mb-4 min-h-8">
                                         <span class="lang-ar">حل كبح متقدم لسيارات الأداء العالي</span>
@@ -1142,8 +1150,9 @@
                             </article>
 
                             <!-- Product 8 -->
-                            <article class="product-card premium-card p-4 group relative" data-category="accessories"
-                                data-brand="dhell" data-name="dhell premium shade" data-price="175">
+                            <article class="product-card premium-card p-4 group relative cursor-pointer"
+                                data-category="accessories" data-brand="dhell" data-name="dhell premium shade"
+                                data-price="175">
                                 <button
                                     class="wishlist-btn absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-white border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-orange hover:border-brand-orange transition-colors shadow-sm"
                                     aria-label="Wishlist">
@@ -1155,8 +1164,8 @@
                                         class="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
                                         <span class="text-4xl font-black">MOHARYKAT</span>
                                     </div>
-                                    <a href="#" class="contents"><img src="assets/products/dhell-sunshades.png"
-                                            alt="DHELL Premium Shade"
+                                    <a href="./product.html" class="contents"><img
+                                            src="assets/products/dhell-sunshades.png" alt="DHELL Premium Shade"
                                             class="object-contain w-full h-full transition-transform duration-500 z-10 relative drop-shadow-md"></a>
                                 </div>
                                 <div class="px-2">
@@ -1168,7 +1177,7 @@
                                     </div>
                                     <h3
                                         class="font-bold text-base text-brand-text mb-1 group-hover:text-brand-green transition-colors">
-                                        <a href="#">DHELL Premium Shade</a>
+                                        <a href="./product.html">DHELL Premium Shade</a>
                                     </h3>
                                     <p class="text-xs text-brand-sec mb-4 min-h-8">
                                         <span class="lang-ar">حماية عملية من الحرارة بتصميم أنيق</span>
@@ -1489,7 +1498,8 @@
             const cartBadges = document.querySelectorAll('.fa-bag-shopping + span');
 
             document.querySelectorAll('.add-cart').forEach(btn => {
-                btn.addEventListener('click', () => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     cartCount++;
                     cartBadges.forEach(b => b.textContent = cartCount);
                     btn.classList.remove('btn-secondary');
@@ -1505,11 +1515,23 @@
             });
 
             document.querySelectorAll('.wishlist-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     const icon = btn.querySelector('i');
                     icon.classList.toggle('fa-regular');
                     icon.classList.toggle('fa-solid');
                     btn.classList.toggle('text-brand-orange');
+                });
+            });
+
+            // Card Click Event Redirection to ./product.html
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // Prevent redirection if user clicked directly inside cart or wishlist buttons or active links
+                    if (e.target.closest('.add-cart') || e.target.closest('.wishlist-btn') || e.target.closest('a')) {
+                        return;
+                    }
+                    window.location.href = './product.html';
                 });
             });
 
