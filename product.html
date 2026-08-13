@@ -595,12 +595,12 @@
             </p>
             <div class="grid grid-cols-2 gap-3 pt-2">
                 <a href="cart.html"
-                    class="btn-secondary py-3 rounded-full text-center font-bold text-sm flex items-center justify-center gap-2">
+                    class="btn-secondary py-3 rounded-[15px] text-center font-bold text-sm flex items-center justify-center gap-2">
                     <i class="fa-solid fa-bag-shopping text-xs"></i>
                     <span class="lang-ar">عرض السلة</span><span class="lang-en">View Cart</span>
                 </a>
                 <a href="checkout.html"
-                    class="btn-primary py-3 rounded-full text-center font-bold text-sm flex items-center justify-center gap-2 shadow-md">
+                    class="btn-primary py-3 rounded-[15px] text-center font-bold text-sm flex items-center justify-center gap-2 shadow-md">
                     <span class="lang-ar">الشراء الآن</span><span class="lang-en">Checkout</span>
                     <i class="fa-solid fa-arrow-left text-xs rtl:scale-x-[-1]"></i>
                 </a>
@@ -616,7 +616,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="./index.html" class="block group">
-                        <img class="h-14 w-auto group-hover:scale-105 transition-transform filter brightness-0"
+                        <img class="h-14 w-auto group-hover:scale-105 transition-transform"
                             src="assets/logo/logo.png" alt="Moharykat Logo">
                     </a>
                 </div>
@@ -655,7 +655,7 @@
                             class="absolute -top-2 -right-2 bg-brand-orange text-white text-[10px] font-bold min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center">1</span>
                     </button>
                     <a href="#bundles"
-                        class="btn-primary px-8 py-3 rounded-full font-bold shadow-md flex items-center gap-2">
+                        class="btn-primary px-8 py-3 rounded-[15px] font-bold shadow-md flex items-center gap-2">
                         <span class="lang-ar">تسوق الآن</span><span class="lang-en">Shop Now</span>
                     </a>
                 </div>
@@ -856,7 +856,7 @@
                     <div class="flex flex-col sm:flex-row gap-4 mb-8">
                         <!-- Quantity -->
                         <div
-                            class="flex items-center border border-brand-border rounded-full bg-white px-2 h-[60px] sm:w-[150px] justify-between">
+                            class="flex items-center border border-brand-border rounded-[20px] bg-white px-2 h-[60px] sm:w-[150px] justify-between">
                             <button
                                 class="w-10 h-10 rounded-full flex items-center justify-center text-brand-sec hover:bg-brand-alt transition-colors"
                                 onclick="const i=document.getElementById('qty'); i.value=Math.max(1, parseInt(i.value)-1)"><i
@@ -872,7 +872,7 @@
 
                         <!-- Add to Cart -->
                         <button id="addToCartBtn" data-product-id="bundle-v6"
-                            class="flex-1 btn-primary rounded-full font-black text-lg h-[60px] flex justify-center items-center gap-3 shadow-[0_10px_30px_rgba(0,91,37,0.3)] hover:shadow-[0_15px_40px_rgba(0,91,37,0.4)]">
+                            class="flex-1 btn-primary rounded-[20px] font-black text-lg h-[60px] flex justify-center items-center gap-3 shadow-[0_10px_30px_rgba(0,91,37,0.3)] hover:shadow-[0_15px_40px_rgba(0,91,37,0.4)]">
                             <i class="fa-solid fa-cart-shopping text-xl"></i>
                             <span class="lang-ar">أضف للسلة - 379.50 ر.س</span><span class="lang-en">Add to Cart -
                                 379.50 SAR</span>
@@ -1072,7 +1072,7 @@
                     <p class="text-3xl font-black text-brand-text mb-6">459.50 <span
                             class="text-base text-brand-sec">SAR</span></p>
                     <button
-                        class="w-full btn-primary py-3 rounded-full font-bold shadow-md hover:-translate-y-1 transition-all"
+                        class="w-full btn-primary py-3 rounded-[15px] font-bold shadow-md hover:-translate-y-1 transition-all"
                         onclick="triggerAddToCart({titleAr: 'المجموعة الكاملة (3 منتجات)', titleEn: 'Full Bundle (3 Items)', price: 459.50, img: 'assets/bundles/bundle-v6.png'})">
                         <span class="lang-ar">أضف الكل للسلة</span><span class="lang-en">Add All to Cart</span>
                     </button>
@@ -1427,7 +1427,7 @@
 
                 <!-- Brand Info -->
                 <div class="lg:col-span-1">
-                    <img src="assets/logo/logo.png" alt="Moharykat Logo" class="h-10 mb-6 filter brightness-0">
+                    <img src="assets/logo/logo.png" alt="Moharykat Logo" class="h-10 mb-6">
                     <p class="text-brand-sec text-sm leading-relaxed mb-6 font-medium">
                         <span class="lang-ar">وجهتك الفاخرة لقطع غيار دودج الأصلية. نقدم لك مزيجاً من الأداء والأمان
                             والتصميم العصري.</span>
@@ -1488,10 +1488,10 @@
                             discounts.</span></p>
                     <form class="flex relative">
                         <input type="email" placeholder="Email address..."
-                            class="w-full bg-brand-alt border border-brand-border rounded-full py-3 px-5 text-sm text-brand-text focus:outline-none focus:border-brand-green transition-colors"
+                            class="w-full bg-brand-alt border border-brand-border rounded-[10px] py-3 px-5 text-sm text-brand-text focus:outline-none focus:border-brand-green transition-colors"
                             dir="ltr">
                         <button type="submit"
-                            class="absolute top-1 bottom-1 right-1 rtl:right-auto rtl:left-1 btn-primary rounded-full w-10 h-10 flex items-center justify-center">
+                            class="absolute top-1 bottom-1 right-1 btn-primary rounded-[10px] w-10 h-10 flex items-center justify-center">
                             <i class="fa-solid fa-paper-plane rtl:scale-x-[-1]"></i>
                         </button>
                     </form>
