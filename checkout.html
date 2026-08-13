@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
 
@@ -142,7 +144,7 @@
     <header class="bg-white border-b border-brand-border sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
             <a href="index.html" class="block">
-                <img class="h-12 w-auto filter brightness-0" src="assets/logo/logo.png" alt="Moharykat Logo">
+                <img class="h-12 w-auto" src="assets/logo/logo.png" alt="Moharykat Logo">
             </a>
             <button id="langToggle"
                 class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-muted hover:border-brand-green transition-all bg-white shadow-sm">
@@ -165,12 +167,13 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
 
-                <!-- Checkout Form Area -->
-                <div class="lg:col-span-2 space-y-6">
-                    <form id="checkoutForm" class="space-y-6" novalidate>
-                        <!-- Single Unified Form Card -->
+                <!-- Right Column: Checkout Form split into 2 card containers over each other -->
+                <div class="lg:col-span-2">
+                    <form id="checkoutForm" class="flex flex-col h-full space-y-6" novalidate>
+                        
+                        <!-- Container 1: Contact Info & Shipping Address -->
                         <div class="premium-card p-6 md:p-8 space-y-8">
 
                             <!-- Contact Details Sub-section -->
@@ -237,51 +240,51 @@
                                 </div>
                             </div>
 
-                            <!-- Payment Method Sub-section -->
-                            <div>
-                                <h2
-                                    class="text-lg font-black text-brand-text mb-4 pb-2 border-b border-brand-border flex items-center gap-2">
-                                    <i class="fa-regular fa-credit-card text-brand-green"></i>
-                                    <span class="lang-ar">طريقة الدفع</span><span class="lang-en">Payment Method</span>
-                                </h2>
-                                <div class="space-y-3" id="paymentMethods">
-                                    <label class="payment-option selected">
-                                        <input type="radio" name="payment" value="card" checked>
-                                        <div class="flex-1">
-                                            <p class="font-bold text-brand-text text-sm mb-2"><span
-                                                    class="lang-ar">بطاقة بنكية</span><span class="lang-en">Credit /
-                                                    Debit Card</span></p>
-                                            <div class="payment-icon-row">
-                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' width='120' height='40'%3E%3Cpath fill='%23005B25' d='M10 28V12h5.5l3.5 10.5L22.5 12H28v16h-4.5V17.5L20 28h-3.5L13.5 17.5V28H10z'/%3E%3Cpath fill='%23005B25' d='M32 28v-11h4.5v1.8c1.2-1.4 2.8-2.1 4.5-2.1 3.5 0 5.5 2 5.5 5.5V28h-4.5v-7.2c0-1.8-.8-2.8-2.5-2.8-1.6 0-2.5 1-2.5 2.8V28H32z'/%3E%3Cpath fill='%23005B25' d='M62 28v-1.8c-1.2 1.4-2.8 2.1-4.5 2.1-3.5 0-6-2.5-6-6s2.5-6 6-6c1.7 0 3.3.7 4.5 2.1V12H66.5v16H62zm-4.2-3.4c1.8 0 2.8-1.2 2.8-2.8s-1-2.8-2.8-2.8-2.8 1.2-2.8 2.8 1 2.8 2.8 2.8z'/%3E%3Ccircle cx='80' cy='21' r='6' fill='%2300A3E0'/%3E%3C/svg%3E"
-                                                    alt="mada" class="payment-icon">
-                                                <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/main/flat/visa.svg"
-                                                    alt="Visa" class="payment-icon">
-                                                <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/main/flat/mastercard.svg"
-                                                    alt="Mastercard" class="payment-icon">
-                                            </div>
-                                        </div>
-                                    </label>
+                        </div>
 
-                                    <label class="payment-option">
-                                        <input type="radio" name="payment" value="applepay">
-                                        <div class="flex-1 flex items-center justify-between gap-4">
-                                            <p class="font-bold text-brand-text text-sm">Apple Pay</p>
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Apple_Pay_logo.svg/120px-Apple_Pay_logo.svg.png"
-                                                alt="Apple Pay" class="payment-icon">
+                        <!-- Container 2: Payment Method -->
+                        <div class="premium-card p-6 md:p-8">
+                            <h2
+                                class="text-lg font-black text-brand-text mb-4 pb-2 border-b border-brand-border flex items-center gap-2">
+                                <i class="fa-regular fa-credit-card text-brand-green"></i>
+                                <span class="lang-ar">طريقة الدفع</span><span class="lang-en">Payment Method</span>
+                            </h2>
+                            <div class="space-y-3" id="paymentMethods">
+                                <label class="payment-option selected">
+                                    <input type="radio" name="payment" value="card" checked>
+                                    <div class="flex-1">
+                                        <p class="font-bold text-brand-text text-sm mb-2"><span
+                                                class="lang-ar">بطاقة بنكية</span><span class="lang-en">Credit /
+                                                Debit Card</span></p>
+                                        <div class="payment-icon-row">
+                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' width='120' height='40'%3E%3Cpath fill='%23005B25' d='M10 28V12h5.5l3.5 10.5L22.5 12H28v16h-4.5V17.5L20 28h-3.5L13.5 17.5V28H10z'/%3E%3Cpath fill='%23005B25' d='M32 28v-11h4.5v1.8c1.2-1.4 2.8-2.1 4.5-2.1 3.5 0 5.5 2 5.5 5.5V28h-4.5v-7.2c0-1.8-.8-2.8-2.5-2.8-1.6 0-2.5 1-2.5 2.8V28H32z'/%3E%3Cpath fill='%23005B25' d='M62 28v-1.8c-1.2 1.4-2.8 2.1-4.5 2.1-3.5 0-6-2.5-6-6s2.5-6 6-6c1.7 0 3.3.7 4.5 2.1V12H66.5v16H62zm-4.2-3.4c1.8 0 2.8-1.2 2.8-2.8s-1-2.8-2.8-2.8-2.8 1.2-2.8 2.8 1 2.8 2.8 2.8z'/%3E%3Ccircle cx='80' cy='21' r='6' fill='%2300A3E0'/%3E%3C/svg%3E"
+                                                alt="mada" class="payment-icon">
+                                            <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/main/flat/visa.svg"
+                                                alt="Visa" class="payment-icon">
+                                            <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/main/flat/mastercard.svg"
+                                                alt="Mastercard" class="payment-icon">
                                         </div>
-                                    </label>
-                                    <label class="payment-option">
-                                        <input type="radio" name="payment" value="cod">
-                                        <div class="flex-1 flex items-center justify-between gap-4">
-                                            <p class="font-bold text-brand-text text-sm"><span class="lang-ar">الدفع عند
-                                                    الاستلام</span><span class="lang-en">Cash on Delivery</span></p>
-                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='32' height='32'%3E%3Crect x='4' y='16' width='56' height='36' rx='4' fill='%23005B25'/%3E%3Ccircle cx='32' cy='34' r='10' fill='%23F04F25'/%3E%3Ctext x='32' y='38' text-anchor='middle' fill='white' font-size='12' font-weight='bold'%3E%EF%B7%BC%3C/text%3E%3C/svg%3E"
-                                                alt="Cash" class="payment-icon">
-                                        </div>
-                                    </label>
-                                </div>
+                                    </div>
+                                </label>
+
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="applepay">
+                                    <div class="flex-1 flex items-center justify-between gap-4">
+                                        <p class="font-bold text-brand-text text-sm">Apple Pay</p>
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Apple_Pay_logo.svg/120px-Apple_Pay_logo.svg.png"
+                                            alt="Apple Pay" class="payment-icon">
+                                    </div>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="cod">
+                                    <div class="flex-1 flex items-center justify-between gap-4">
+                                        <p class="font-bold text-brand-text text-sm"><span class="lang-ar">الدفع عند
+                                                الاستلام</span><span class="lang-en">Cash on Delivery</span></p>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='32' height='32'%3E%3Crect x='4' y='16' width='56' height='36' rx='4' fill='%23005B25'/%3E%3Ccircle cx='32' cy='34' r='10' fill='%23F04F25'/%3E%3Ctext x='32' y='38' text-anchor='middle' fill='white' font-size='12' font-weight='bold'%3E%EF%B7%BC%3C/text%3E%3C/svg%3E"
+                                            alt="Cash" class="payment-icon">
+                                    </div>
+                                </label>
                             </div>
-
                         </div>
 
                         <button type="submit" id="confirmOrderBtn"
@@ -292,20 +295,23 @@
                     </form>
                 </div>
 
-                <!-- Sticky Order Summary -->
-                <div class="lg:col-span-1">
-                    <div class="premium-card p-6 sticky top-28">
-                        <h2 class="text-xl font-black text-brand-text mb-6">
-                            <span class="lang-ar">ملخص الطلب</span><span class="lang-en">Order Summary</span>
-                        </h2>
-                        <div id="checkoutItems" class="space-y-4 mb-6 max-h-64 overflow-y-auto"></div>
-                        <div id="emptyCheckoutRedirect" class="hidden text-center py-6">
-                            <p class="text-brand-sec font-bold mb-4"><span class="lang-ar">سلتك فارغة</span><span
-                                    class="lang-en">Your cart is empty</span></p>
-                            <a href="cart.html" class="text-brand-green font-bold underline"><span
-                                    class="lang-ar">العودة للسلة</span><span class="lang-en">Back to cart</span></a>
+                <!-- Left Column: Order Summary section (matches total height of right form section on desktop) -->
+                <div class="lg:col-span-1 flex flex-col">
+                    <div class="premium-card p-6 flex flex-col justify-between sticky top-28">
+                        <div>
+                            <h2 class="text-xl font-black text-brand-text mb-6">
+                                <span class="lang-ar">ملخص الطلب</span><span class="lang-en">Order Summary</span>
+                            </h2>
+                            <div id="checkoutItems" class="space-y-4 mb-6 max-h-64 overflow-y-auto"></div>
+                            <div id="emptyCheckoutRedirect" class="hidden text-center py-6">
+                                <p class="text-brand-sec font-bold mb-4"><span class="lang-ar">سلتك فارغة</span><span
+                                        class="lang-en">Your cart is empty</span></p>
+                                <a href="cart.html" class="text-brand-green font-bold underline"><span
+                                        class="lang-ar">العودة للسلة</span><span class="lang-en">Back to cart</span></a>
+                            </div>
                         </div>
-                        <div id="checkoutTotals">
+
+                        <div id="checkoutTotals" class="mt-auto">
                             <div class="space-y-3 text-sm font-bold text-brand-sec border-t border-brand-border pt-4">
                                 <div class="flex justify-between">
                                     <span class="lang-ar">المجموع الفرعي</span><span class="lang-en">Subtotal</span>
@@ -323,13 +329,14 @@
                                 </div>
                             </div>
                             <button type="submit" form="checkoutForm" id="confirmOrderBtnDesktop"
-                                class="hidden lg:flex w-full btn-primary rounded-full font-black text-lg h-14 justify-center items-center gap-3 shadow-[0_10px_30px_rgba(0,91,37,0.3)] mt-6">
+                                class="hidden lg:flex w-full btn-primary rounded-[15px] font-black text-lg h-14 justify-center items-center gap-3 shadow-[0_10px_30px_rgba(0,91,37,0.3)] mt-6">
                                 <span class="lang-ar">تأكيد الطلب</span><span class="lang-en">Confirm Order</span>
                                 <i class="fa-solid fa-check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </main>
