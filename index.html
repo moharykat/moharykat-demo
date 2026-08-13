@@ -18,6 +18,9 @@
     <!-- AOS Animation Library CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+    <!-- Swiper (Category carousel) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -54,6 +57,47 @@
     </script>
 
     <style>
+/* =========================================
+   GLOBAL SUBTLE TOPOGRAPHIC WAVE PATTERN
+   ========================================= */
+
+   html {
+    position: relative;
+}
+
+html::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    /* SVG contour lines */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cg fill='none' stroke='%23dfe2df' stroke-width='1' opacity='0.55'%3E%3Cpath d='M-100 180 C100 40 260 280 480 150 S820 80 1050 190 S1400 300 1700 120'/%3E%3Cpath d='M-100 215 C100 75 280 315 500 185 S840 115 1070 225 S1420 335 1700 155'/%3E%3Cpath d='M-100 250 C100 110 300 350 520 220 S860 150 1090 260 S1440 370 1700 190'/%3E%3Cpath d='M-120 480 C100 320 300 560 520 430 S850 340 1080 470 S1400 600 1720 400'/%3E%3Cpath d='M-120 515 C100 355 320 595 540 465 S870 375 1110 505 S1430 635 1720 435'/%3E%3Cpath d='M-120 760 C100 600 320 850 550 710 S880 620 1120 750 S1440 880 1720 670'/%3E%3Cpath d='M-120 795 C100 635 340 885 570 745 S900 655 1150 785 S1470 915 1720 705'/%3E%3C/g%3E%3C/svg%3E");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Keep clickable UI above the pattern */
+header,
+footer,
+nav,
+button,
+a,
+input,
+select,
+textarea {
+    position: relative;
+    z-index: 10000;
+}
+
+/* body*/
+
         body {
             font-family: 'Cairo', sans-serif;
             background-color: #FFFFFF;
@@ -116,6 +160,8 @@
             background-color: #005B25;
             color: white;
             transition: all 0.3s ease;
+            border: solid 1px #E5E7EB;
+            border-radius: 15px !important;
         }
 
         .btn-primary:hover {
@@ -128,6 +174,7 @@
             background-color: white;
             color: #005B25;
             border: 2px solid #005B25;
+            border-radius: 15px !important;
             transition: all 0.3s ease;
         }
 
@@ -140,6 +187,7 @@
             background-color: #F04F25;
             color: white;
             transition: all 0.3s ease;
+            border-radius: 15px !important;
         }
 
         .btn-accent:hover {
@@ -339,6 +387,179 @@
             padding-left: 16px;
         }
 
+        /* Bundle Carousel (Top Offers sidebar) */
+        .bundle-carousel {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .bundle-carousel-viewport {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .bundle-carousel-track {
+            display: flex;
+            height: 100%;
+            direction: ltr;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bundle-carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+            height: 100%;
+        }
+
+        .bundle-carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 0.25rem;
+        }
+
+        .bundle-carousel-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .bundle-carousel-btn:hover {
+            background: #005B25;
+            border-color: #005B25;
+            color: #FFFFFF;
+        }
+
+        .bundle-carousel-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .bundle-carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 9999px;
+            background: #CBD5E1;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .bundle-carousel-dot.active {
+            width: 24px;
+            background: #005B25;
+        }
+
+        /* Shop by Category — Swiper looping carousel */
+.category-swiper-wrap {
+    position: relative;
+    padding-bottom: 2.5rem;
+}
+
+.category-swiper {
+    overflow: hidden;
+    cursor: grab;
+    width: 100%; /* Ensures container spans full width */
+}
+
+.category-swiper.swiper-grabbing {
+    cursor: grabbing;
+}
+
+.category-swiper .swiper-slide {
+    height: auto;
+    box-sizing: border-box; /* Prevents overflow calculation glitches */
+}
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    min-height: 140px;
+    user-select: none;
+    height: 100%; /* Ensures all cards match slide height */
+}
+
+@media (min-width: 768px) {
+    .category-card {
+        padding: 2rem 1.25rem;
+    }
+}
+
+.category-card .category-icon {
+    font-size: 2rem;
+    color: #005B25;
+    margin-bottom: 0.75rem;
+    line-height: 1;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+    transform: scale(1.08);
+}
+
+.category-card .category-label {
+    font-weight: 700;
+    color: #111827;
+    font-size: 0.875rem;
+    line-height: 1.35;
+    transition: color 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .category-card .category-label {
+        font-size: 1rem;
+    }
+}
+
+.category-card:hover .category-label {
+    color: #005B25;
+}
+
+.category-swiper-pagination {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.category-swiper-pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: #CBD5E1;
+    opacity: 1;
+    margin: 0 !important;
+    transition: all 0.3s ease;
+}
+
+.category-swiper-pagination .swiper-pagination-bullet-active {
+    width: 24px;
+    background: #005B25;
+}
+
         /* Flip Clock */
         .flip-clock {
             display: flex;
@@ -435,10 +656,13 @@
                 width: 84px;
             }
         }
+
+    
     </style>
 </head>
 
 <body class="antialiased selection:bg-brand-green selection:text-white relative">
+ 
 
     <!-- Sticky Navigation -->
     <nav class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-brand-border shadow-sm"
@@ -449,7 +673,7 @@
                 <div class="flex-shrink-0 flex items-center">
                     <a href="./index.html" class="block group">
                         <!-- Assuming the logo in assets is dark or has a light mode version. We'll use CSS filter to make it dark if it was white -->
-                        <img class="h-14 w-auto group-hover:scale-105 transition-transform filter brightness-0"
+                        <img class="h-14 w-auto group-hover:scale-105 transition-transform "
                             src="assets/logo/logo.png" alt="Moharykat Logo">
                     </a>
                 </div>
@@ -710,7 +934,7 @@
                                 class="lang-en">OFF</span></span>
                     </div>
                     <img src="assets/bundles/bundle-v8-57.png" alt="Flash Deal Bundle"
-                        class="relative z-10 w-full max-w-lg drop-shadow-[0_40px_60px_rgba(240,79,37,0.25)]">
+                        class="relative z-10 w-full max-w-lg drop-shadow-[0_40px_60px_rgba(240,79,37,0.25)] rounded-[25px] ">
                 </div>
 
                 <!-- Deal Content -->
@@ -990,108 +1214,192 @@
                     </div>
                 </div>
 
-                <!-- Vertical Stack for smaller bundles (desktop) -->
-                <div class="min-w-[85vw] md:min-w-0 md:col-span-4 flex flex-col gap-8 shrink-0">
+                <!-- Bundle Carousel (sidebar column) -->
+                <div class="min-w-[85vw] md:min-w-0 md:col-span-4 flex flex-col shrink-0 self-stretch"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="bundle-carousel h-full" id="bundleCarousel" aria-roledescription="carousel">
+                        <div class="bundle-carousel-viewport relative">
+                            <div class="bundle-carousel-track" id="bundleCarouselTrack">
 
-                    <!-- SMALL BUNDLE 1 -->
-                    <div class="flex-1 group relative bg-white rounded-[24px] premium-card flex flex-col overflow-hidden"
-                        data-aos="fade-up" data-aos-delay="100">
-                        <div
-                            class="absolute top-4 right-4 bg-brand-green text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider z-20 shadow-sm">
-                            -31%</div>
-
-                        <div
-                            class="relative h-48 bg-brand-subtle flex items-center justify-center p-6 border-b border-brand-border">
-                            <a href="product.html" class="contents"><img src="assets/bundles/bundle-v6.png"
-                                    alt="Bundle V6"
-                                    class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 relative z-10 drop-shadow-xl"></a>
-                        </div>
-
-                        <div class="p-6 flex flex-col flex-1">
-                            <div class="flex items-center gap-2 mb-2 flex-wrap">
-                                <span
-                                    class="bg-[#FEF2F2] border border-[#FCA5A5] text-[#EF4444] text-[10px] font-bold px-2 py-0.5 rounded-md"><i
-                                        class="fa-regular fa-clock"></i> <span class="lang-ar">عرض محدود</span><span
-                                        class="lang-en">Limited</span></span>
-                                <span class="countdown-badge" data-countdown="43200"><span
-                                        class="countdown-display">12:00:00</span></span>
-                            </div>
-                            <h4
-                                class="font-bold text-xl text-brand-text mb-2 group-hover:text-brand-green transition-colors">
-                                <a href="product.html" class="hover:text-brand-green"><span class="lang-ar">بكج دودج
-                                        تشارجر V6</span><span class="lang-en">Dodge Charger V6 Bundle</span></a>
-                            </h4>
-                            <p class="text-xs text-brand-sec mb-4 flex-1">
-                                <span class="lang-ar">طقم أمامي وخلفي مع ستائر DHELL. توفير ذكي لأداء يومي.</span>
-                                <span class="lang-en">Front & rear set with DHELL sunshades. Smart savings for daily
-                                    performance.</span>
-                            </p>
-
-                            <div class="flex justify-between items-end mb-4">
-                                <div>
-                                    <span class="text-brand-muted line-through text-xs font-bold">550 SAR</span>
-                                    <div class="text-2xl font-black text-brand-text">
-                                        379.50<span class="text-xs font-bold ml-1 text-brand-sec">SAR</span>
+                                <!-- Slide 1: V6 Bundle -->
+                                <div class="bundle-carousel-slide" role="group" aria-roledescription="slide">
+                                    <div
+                                        class="h-full group relative bg-white rounded-[24px] premium-card flex flex-col overflow-hidden">
+                                        <div
+                                            class="absolute top-4 end-4 bg-brand-green text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider z-20 shadow-sm">
+                                            -31%</div>
+                                        <div
+                                            class="relative h-48 bg-brand-subtle flex items-center justify-center p-6 border-b border-brand-border">
+                                            <a href="product.html" class="contents"><img
+                                                    src="assets/bundles/bundle-v6.png" alt="Bundle V6"
+                                                    class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 relative z-10 drop-shadow-xl"></a>
+                                        </div>
+                                        <div class="p-6 flex flex-col flex-1">
+                                            <div class="flex items-center gap-2 mb-2 flex-wrap">
+                                                <span
+                                                    class="bg-[#FEF2F2] border border-[#FCA5A5] text-[#EF4444] text-[10px] font-bold px-2 py-0.5 rounded-md"><i
+                                                        class="fa-regular fa-clock"></i> <span
+                                                        class="lang-ar">عرض محدود</span><span
+                                                        class="lang-en">Limited</span></span>
+                                                <span class="countdown-badge" data-countdown="43200"><span
+                                                        class="countdown-display">12:00:00</span></span>
+                                            </div>
+                                            <h4
+                                                class="font-bold text-xl text-brand-text mb-2 group-hover:text-brand-green transition-colors">
+                                                <a href="product.html" class="hover:text-brand-green"><span
+                                                        class="lang-ar">بكج دودج تشارجر V6</span><span
+                                                        class="lang-en">Dodge Charger V6 Bundle</span></a>
+                                            </h4>
+                                            <p class="text-xs text-brand-sec mb-4 flex-1">
+                                                <span class="lang-ar">طقم أمامي وخلفي مع ستائر DHELL. توفير ذكي لأداء
+                                                    يومي.</span>
+                                                <span class="lang-en">Front & rear set with DHELL sunshades. Smart
+                                                    savings for daily performance.</span>
+                                            </p>
+                                            <div class="flex justify-between items-end mb-4">
+                                                <div>
+                                                    <span
+                                                        class="text-brand-muted line-through text-xs font-bold">550
+                                                        SAR</span>
+                                                    <div class="text-2xl font-black text-brand-text">
+                                                        379.50<span
+                                                            class="text-xs font-bold ms-1 text-brand-sec">SAR</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button
+                                                class="w-full py-3 rounded-xl btn-primary font-bold text-sm flex justify-center items-center gap-2">
+                                                <span class="lang-ar">أضف للسلة</span><span class="lang-en">Add to
+                                                    Cart</span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <button
-                                class="w-full py-3 rounded-xl btn-primary font-bold text-sm flex justify-center items-center gap-2">
-                                <span class="lang-ar">أضف للسلة</span><span class="lang-en">Add to Cart</span>
+                                <!-- Slide 2: SRT Bundle -->
+                                <div class="bundle-carousel-slide" role="group" aria-roledescription="slide">
+                                    <div
+                                        class="h-full group relative bg-white rounded-[24px] premium-card flex flex-col overflow-hidden">
+                                        <div
+                                            class="absolute top-4 end-4 bg-white border border-brand-border text-brand-text text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider z-20 shadow-sm">
+                                            -19%</div>
+                                        <div
+                                            class="relative h-48 bg-brand-subtle flex items-center justify-center p-6 border-b border-brand-border">
+                                            <a href="product.html" class="contents"><img
+                                                    src="assets/bundles/bundle-srt-690.png" alt="Bundle SRT"
+                                                    class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 relative z-10 drop-shadow-xl"></a>
+                                        </div>
+                                        <div class="p-6 flex flex-col flex-1">
+                                            <div class="flex items-center gap-2 mb-2 flex-wrap">
+                                                <span
+                                                    class="bg-[#FEF2F2] border border-[#FCA5A5] text-[#EF4444] text-[10px] font-bold px-2 py-0.5 rounded-md"><i
+                                                        class="fa-regular fa-clock"></i> <span
+                                                        class="lang-ar">عرض محدود</span><span
+                                                        class="lang-en">Limited</span></span>
+                                                <span class="countdown-badge" data-countdown="64800"><span
+                                                        class="countdown-display">18:00:00</span></span>
+                                            </div>
+                                            <h4
+                                                class="font-bold text-xl text-brand-text mb-2 group-hover:text-brand-green transition-colors">
+                                                <a href="product.html" class="hover:text-brand-green"><span
+                                                        class="lang-ar">بكج الأداء العالي SRT</span><span
+                                                        class="lang-en">High Performance SRT</span></a>
+                                            </h4>
+                                            <p class="text-xs text-brand-sec mb-4 flex-1">
+                                                <span class="lang-ar">قوة كبح جبارة مصممة لسيارات SRT الرياضية.</span>
+                                                <span class="lang-en">Massive stopping power designed for SRT sports
+                                                    cars.</span>
+                                            </p>
+                                            <div class="flex justify-between items-end mb-4">
+                                                <div>
+                                                    <span
+                                                        class="text-brand-muted line-through text-xs font-bold">850
+                                                        SAR</span>
+                                                    <div class="text-2xl font-black text-brand-text">
+                                                        690.00<span
+                                                            class="text-xs font-bold ms-1 text-brand-sec">SAR</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button
+                                                class="w-full py-3 rounded-xl bg-white border border-brand-border text-brand-text hover:bg-brand-alt font-bold text-sm transition-all flex justify-center items-center gap-2">
+                                                <span class="lang-ar">أضف للسلة</span><span class="lang-en">Add to
+                                                    Cart</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Slide 3: DHELL Sunshades Bundle -->
+                                <div class="bundle-carousel-slide" role="group" aria-roledescription="slide">
+                                    <div
+                                        class="h-full group relative bg-white rounded-[24px] premium-card flex flex-col overflow-hidden">
+                                        <div
+                                            class="absolute top-4 end-4 bg-brand-orange text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider z-20 shadow-sm">
+                                            -15%</div>
+                                        <div
+                                            class="relative h-48 bg-brand-subtle flex items-center justify-center p-6 border-b border-brand-border">
+                                            <a href="product.html" class="contents"><img
+                                                    src="assets/products/dhell-sunshades.png" alt="DHELL Sunshades"
+                                                    class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 relative z-10 drop-shadow-xl"></a>
+                                        </div>
+                                        <div class="p-6 flex flex-col flex-1">
+                                            <div class="flex items-center gap-2 mb-2 flex-wrap">
+                                                <span
+                                                    class="bg-[#FEF2F2] border border-[#FCA5A5] text-[#EF4444] text-[10px] font-bold px-2 py-0.5 rounded-md"><i
+                                                        class="fa-regular fa-clock"></i> <span
+                                                        class="lang-ar">عرض محدود</span><span
+                                                        class="lang-en">Limited</span></span>
+                                                <span class="countdown-badge" data-countdown="28800"><span
+                                                        class="countdown-display">08:00:00</span></span>
+                                            </div>
+                                            <h4
+                                                class="font-bold text-xl text-brand-text mb-2 group-hover:text-brand-green transition-colors">
+                                                <a href="product.html" class="hover:text-brand-green"><span
+                                                        class="lang-ar">بكج ستائر DHELL بريميوم</span><span
+                                                        class="lang-en">DHELL Premium Sunshades</span></a>
+                                            </h4>
+                                            <p class="text-xs text-brand-sec mb-4 flex-1">
+                                                <span class="lang-ar">حماية كاملة من الشمس مع عزل حراري — مثالي
+                                                    لسيارات دودج.</span>
+                                                <span class="lang-en">Full sun protection with thermal insulation —
+                                                    ideal for Dodge vehicles.</span>
+                                            </p>
+                                            <div class="flex justify-between items-end mb-4">
+                                                <div>
+                                                    <span
+                                                        class="text-brand-muted line-through text-xs font-bold">199
+                                                        SAR</span>
+                                                    <div class="text-2xl font-black text-brand-text">
+                                                        169.00<span
+                                                            class="text-xs font-bold ms-1 text-brand-sec">SAR</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button
+                                                class="w-full py-3 rounded-xl btn-primary font-bold text-sm flex justify-center items-center gap-2">
+                                                <span class="lang-ar">أضف للسلة</span><span class="lang-en">Add to
+                                                    Cart</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="bundle-carousel-controls">
+                            <button type="button" class="bundle-carousel-btn bundle-carousel-prev"
+                                aria-controls="bundleCarouselTrack">
+                                <i class="fa-solid fa-chevron-left rtl:rotate-180" aria-hidden="true"></i>
+                            </button>
+                            <div class="bundle-carousel-dots" id="bundleCarouselDots" role="tablist"></div>
+                            <button type="button" class="bundle-carousel-btn bundle-carousel-next"
+                                aria-controls="bundleCarouselTrack">
+                                <i class="fa-solid fa-chevron-right rtl:rotate-180" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
-
-                    <!-- SMALL BUNDLE 2 -->
-                    <div class="flex-1 group relative bg-white rounded-[24px] premium-card flex flex-col overflow-hidden"
-                        data-aos="fade-up" data-aos-delay="200">
-                        <div
-                            class="absolute top-4 right-4 bg-white border border-brand-border text-brand-text text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider z-20 shadow-sm">
-                            -19%</div>
-
-                        <div
-                            class="relative h-48 bg-brand-subtle flex items-center justify-center p-6 border-b border-brand-border">
-                            <a href="product.html" class="contents"><img src="assets/bundles/bundle-srt-690.png"
-                                    alt="Bundle SRT"
-                                    class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 relative z-10 drop-shadow-xl"></a>
-                        </div>
-
-                        <div class="p-6 flex flex-col flex-1">
-                            <div class="flex items-center gap-2 mb-2 flex-wrap">
-                                <span
-                                    class="bg-[#FEF2F2] border border-[#FCA5A5] text-[#EF4444] text-[10px] font-bold px-2 py-0.5 rounded-md"><i
-                                        class="fa-regular fa-clock"></i> <span class="lang-ar">عرض محدود</span><span
-                                        class="lang-en">Limited</span></span>
-                                <span class="countdown-badge" data-countdown="64800"><span
-                                        class="countdown-display">18:00:00</span></span>
-                            </div>
-                            <h4
-                                class="font-bold text-xl text-brand-text mb-2 group-hover:text-brand-green transition-colors">
-                                <a href="product.html" class="hover:text-brand-green"><span class="lang-ar">بكج الأداء
-                                        العالي SRT</span><span class="lang-en">High Performance SRT</span></a>
-                            </h4>
-                            <p class="text-xs text-brand-sec mb-4 flex-1">
-                                <span class="lang-ar">قوة كبح جبارة مصممة لسيارات SRT الرياضية.</span>
-                                <span class="lang-en">Massive stopping power designed for SRT sports cars.</span>
-                            </p>
-
-                            <div class="flex justify-between items-end mb-4">
-                                <div>
-                                    <span class="text-brand-muted line-through text-xs font-bold">850 SAR</span>
-                                    <div class="text-2xl font-black text-brand-text">
-                                        690.00<span class="text-xs font-bold ml-1 text-brand-sec">SAR</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button
-                                class="w-full py-3 rounded-xl bg-white border border-brand-border text-brand-text hover:bg-brand-alt font-bold text-sm transition-all flex justify-center items-center gap-2">
-                                <span class="lang-ar">أضف للسلة</span><span class="lang-en">Add to Cart</span>
-                            </button>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
@@ -1121,66 +1429,83 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-                <a href="#products"
-                    class="premium-card group flex flex-col items-center justify-center p-6 md:p-8 text-center cursor-pointer"
-                    data-aos="fade-up" data-aos-delay="0">
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-brand-green/10 border border-brand-green/20 flex items-center justify-center mb-4 group-hover:bg-brand-green group-hover:border-brand-green transition-all duration-300">
-                        <i
-                            class="fa-solid fa-circle-stop text-2xl text-brand-green group-hover:text-white transition-colors"></i>
+            <div class="category-swiper-wrap" data-aos="fade-up">
+                <div class="swiper category-swiper" id="categorySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="#products" class="category-card premium-card group">
+                                <i class="fa-solid fa-circle-stop category-icon" aria-hidden="true"></i>
+                                <span class="category-label"><span class="lang-ar">فحمات أمامية</span><span
+                                        class="lang-en">Front Pads</span></span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#products" class="category-card premium-card group">
+                                <i class="fa-solid fa-compact-disc category-icon" aria-hidden="true"></i>
+                                <span class="category-label"><span class="lang-ar">فحمات خلفية</span><span
+                                        class="lang-en">Rear Pads</span></span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#products" class="category-card premium-card group">
+                                <i class="fa-solid fa-sun category-icon" aria-hidden="true"></i>
+                                <span class="category-label"><span class="lang-ar">ستائر ظل</span><span
+                                        class="lang-en">Sunshades</span></span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#products" class="category-card premium-card group">
+                                <i class="fa-solid fa-screwdriver-wrench category-icon" aria-hidden="true"></i>
+                                <span class="category-label"><span class="lang-ar">إكسسوارات</span><span
+                                        class="lang-en">Accessories</span></span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#products" class="category-card premium-card group">
+                                <i class="fa-solid fa-oil-can category-icon" aria-hidden="true"></i>
+                                <span class="category-label"><span class="lang-ar">زيوت</span><span
+                                        class="lang-en">Oils</span></span>
+                            </a>
+                        </div>
+                        <!-- Duplicated set for seamless loop when 5 slides are visible -->
+                        <div class="swiper-slide" aria-hidden="true">
+                            <a href="#products" class="category-card premium-card group" tabindex="-1">
+                                <i class="fa-solid fa-circle-stop category-icon" aria-hidden="true"></i>
+                                <span class="category-label"><span class="lang-ar">فحمات أمامية</span><span
+                                        class="lang-en">Front Pads</span></span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide" aria-hidden="true">
+                            <a href="#products" class="category-card premium-card group" tabindex="-1">
+                                <i class="fa-solid fa-compact-disc category-icon" aria-hidden="true"></i>
+                                <span class="category-label"><span class="lang-ar">فحمات خلفية</span><span
+                                        class="lang-en">Rear Pads</span></span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide" aria-hidden="true">
+                            <a href="#products" class="category-card premium-card group" tabindex="-1">
+                                <i class="fa-solid fa-sun category-icon" aria-hidden="true"></i>
+                                <span class="category-label"><span class="lang-ar">ستائر ظل</span><span
+                                        class="lang-en">Sunshades</span></span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide" aria-hidden="true">
+                            <a href="#products" class="category-card premium-card group" tabindex="-1">
+                                <i class="fa-solid fa-screwdriver-wrench category-icon" aria-hidden="true"></i>
+                                <span class="category-label"><span class="lang-ar">إكسسوارات</span><span
+                                        class="lang-en">Accessories</span></span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide" aria-hidden="true">
+                            <a href="#products" class="category-card premium-card group" tabindex="-1">
+                                <i class="fa-solid fa-oil-can category-icon" aria-hidden="true"></i>
+                                <span class="category-label"><span class="lang-ar">زيوت</span><span
+                                        class="lang-en">Oils</span></span>
+                            </a>
+                        </div>
                     </div>
-                    <span
-                        class="font-bold text-brand-text group-hover:text-brand-green transition-colors text-sm md:text-base"><span
-                            class="lang-ar">فحمات أمامية</span><span class="lang-en">Front Pads</span></span>
-                </a>
-                <a href="#products"
-                    class="premium-card group flex flex-col items-center justify-center p-6 md:p-8 text-center cursor-pointer"
-                    data-aos="fade-up" data-aos-delay="50">
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center mb-4 group-hover:bg-brand-orange group-hover:border-brand-orange transition-all duration-300">
-                        <i
-                            class="fa-solid fa-compact-disc text-2xl text-brand-orange group-hover:text-white transition-colors"></i>
-                    </div>
-                    <span
-                        class="font-bold text-brand-text group-hover:text-brand-green transition-colors text-sm md:text-base"><span
-                            class="lang-ar">فحمات خلفية</span><span class="lang-en">Rear Pads</span></span>
-                </a>
-                <a href="#products"
-                    class="premium-card group flex flex-col items-center justify-center p-6 md:p-8 text-center cursor-pointer"
-                    data-aos="fade-up" data-aos-delay="100">
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:border-blue-600 transition-all duration-300">
-                        <i class="fa-solid fa-sun text-2xl text-blue-600 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <span
-                        class="font-bold text-brand-text group-hover:text-brand-green transition-colors text-sm md:text-base"><span
-                            class="lang-ar">ستائر ظل</span><span class="lang-en">Sunshades</span></span>
-                </a>
-                <a href="#products"
-                    class="premium-card group flex flex-col items-center justify-center p-6 md:p-8 text-center cursor-pointer"
-                    data-aos="fade-up" data-aos-delay="150">
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-brand-alt border border-brand-border flex items-center justify-center mb-4 group-hover:bg-brand-green group-hover:border-brand-green transition-all duration-300">
-                        <i
-                            class="fa-solid fa-screwdriver-wrench text-2xl text-brand-sec group-hover:text-white transition-colors"></i>
-                    </div>
-                    <span
-                        class="font-bold text-brand-text group-hover:text-brand-green transition-colors text-sm md:text-base"><span
-                            class="lang-ar">إكسسوارات</span><span class="lang-en">Accessories</span></span>
-                </a>
-                <a href="#products"
-                    class="premium-card group flex flex-col items-center justify-center p-6 md:p-8 text-center cursor-pointer col-span-2 sm:col-span-1"
-                    data-aos="fade-up" data-aos-delay="200">
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center mb-4 group-hover:bg-amber-500 group-hover:border-amber-500 transition-all duration-300">
-                        <i
-                            class="fa-solid fa-oil-can text-2xl text-amber-600 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <span
-                        class="font-bold text-brand-text group-hover:text-brand-green transition-colors text-sm md:text-base"><span
-                            class="lang-ar">زيوت</span><span class="lang-en">Oils</span></span>
-                </a>
+                </div>
+                <div class="category-swiper-pagination swiper-pagination" id="categorySwiperPagination"></div>
             </div>
         </div>
     </section>
@@ -1202,13 +1527,13 @@
                 <!-- Filter Tabs -->
                 <div class="flex gap-3 mt-6 md:mt-0 overflow-x-auto pb-2 w-full md:w-auto">
                     <button
-                        class="px-6 py-2 rounded-full bg-brand-green text-white font-bold whitespace-nowrap shadow-sm"><span
+                        class="px-6 py-2 rounded-[15px] bg-brand-green text-white font-bold whitespace-nowrap shadow-sm"><span
                             class="lang-ar">الكل</span><span class="lang-en">All</span></button>
                     <button
-                        class="px-6 py-2 rounded-full bg-white border border-brand-border text-brand-sec hover:bg-brand-alt transition-colors whitespace-nowrap font-bold"><span
+                        class="px-6 py-2 rounded-[15px] bg-white border border-brand-border text-brand-sec hover:bg-brand-alt transition-colors whitespace-nowrap font-bold"><span
                             class="lang-ar">فحمات أمامية</span><span class="lang-en">Front Pads</span></button>
                     <button
-                        class="px-6 py-2 rounded-full bg-white border border-brand-border text-brand-sec hover:bg-brand-alt transition-colors whitespace-nowrap font-bold"><span
+                        class="px-6 py-2 rounded-[15px] bg-white border border-brand-border text-brand-sec hover:bg-brand-alt transition-colors whitespace-nowrap font-bold"><span
                             class="lang-ar">فحمات خلفية</span><span class="lang-en">Rear Pads</span></button>
                 </div>
             </div>
@@ -1421,7 +1746,7 @@
 
             <div class="text-center mt-16">
                 <a href="#"
-                    class="inline-flex items-center gap-3 bg-white border border-brand-border text-brand-text hover:bg-brand-alt px-10 py-4 rounded-full font-bold transition-colors shadow-sm">
+                    class="inline-flex items-center gap-3 bg-white border border-brand-border text-brand-text hover:bg-brand-alt px-10 py-4 rounded-[15px] font-bold transition-colors shadow-sm">
                     <span class="lang-ar">تصفح الكتالوج الكامل</span><span class="lang-en">Browse Full Catalog</span>
                     <i class="fa-solid fa-layer-group text-brand-green"></i>
                 </a>
@@ -2016,7 +2341,7 @@
 
                 <!-- Brand Info -->
                 <div class="lg:col-span-1">
-                    <img src="assets/logo/logo.png" alt="Moharykat Logo" class="h-10 mb-6 filter brightness-0">
+                    <img src="assets/logo/logo.png" alt="Moharykat Logo" class="h-10 mb-6">
                     <p class="text-brand-sec text-sm leading-relaxed mb-6 font-medium">
                         <span class="lang-ar">وجهتك الفاخرة لقطع غيار دودج الأصلية. نقدم لك مزيجاً من الأداء والأمان
                             والتصميم العصري.</span>
@@ -2077,10 +2402,10 @@
                             discounts.</span></p>
                     <form class="flex relative">
                         <input type="email" placeholder="Email address..."
-                            class="w-full bg-brand-alt border border-brand-border rounded-full py-3 px-5 text-sm text-brand-text focus:outline-none focus:border-brand-green transition-colors"
+                            class="w-full bg-brand-alt border border-brand-border rounded-[15px] py-3 px-5 text-sm text-brand-text focus:outline-none focus:border-brand-green transition-colors"
                             dir="ltr">
                         <button type="submit"
-                            class="absolute top-1 bottom-1 right-1 rtl:right-auto rtl:left-1 btn-primary rounded-full w-10 h-10 flex items-center justify-center">
+                            class="absolute top-1 bottom-1 right-1 btn-primary rounded-[5px] w-10 h-10 flex items-center justify-center">
                             <i class="fa-solid fa-paper-plane rtl:scale-x-[-1]"></i>
                         </button>
                     </form>
@@ -2123,13 +2448,14 @@
 
     <!-- AOS Script -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize AOS
             AOS.init({
                 once: true,
                 offset: 50,
-                duration: 800,
+                duration: 400,
                 easing: 'ease-out-cubic',
             });
 
@@ -2149,6 +2475,15 @@
                 }
                 // Refresh AOS to recalculate positions after layout change
                 setTimeout(() => AOS.refresh(), 100);
+                if (window.bundleCarouselInstance) {
+                    window.bundleCarouselInstance.updateDirection();
+                }
+                if (window.categorySwiperInstance) {
+                    window.categorySwiperInstance.changeLanguageDirection(
+                        htmlTag.getAttribute('lang') === 'ar' ? 'rtl' : 'ltr'
+                    );
+                    window.categorySwiperInstance.autoplay.start();
+                }
             };
 
             langToggles.forEach(btn => {
@@ -2291,6 +2626,205 @@
                     display.textContent = formatTime(remaining);
                 }, 1000);
             });
+
+            // Bundle Carousel (Top Offers sidebar)
+            const bundleCarouselEl = document.getElementById('bundleCarousel');
+            if (bundleCarouselEl) {
+                const track = document.getElementById('bundleCarouselTrack');
+                const dotsContainer = document.getElementById('bundleCarouselDots');
+                const prevBtn = bundleCarouselEl.querySelector('.bundle-carousel-prev');
+                const nextBtn = bundleCarouselEl.querySelector('.bundle-carousel-next');
+                const slides = track ? track.querySelectorAll('.bundle-carousel-slide') : [];
+                const totalSlides = slides.length;
+                let currentIndex = 0;
+                let autoTimer = null;
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                const isRTL = () => htmlTag.getAttribute('lang') === 'ar';
+
+                const getSlideLabel = (index) => {
+                    const slideNum = index + 1;
+                    return isRTL()
+                        ? `الشريحة ${slideNum} من ${totalSlides}`
+                        : `Slide ${slideNum} of ${totalSlides}`;
+                };
+
+                const updateCarouselA11y = () => {
+                    const prevLabel = isRTL() ? 'الشريحة السابقة' : 'Previous slide';
+                    const nextLabel = isRTL() ? 'الشريحة التالية' : 'Next slide';
+                    if (prevBtn) prevBtn.setAttribute('aria-label', prevLabel);
+                    if (nextBtn) nextBtn.setAttribute('aria-label', nextLabel);
+                    slides.forEach((slide, i) => {
+                        slide.setAttribute('aria-label', getSlideLabel(i));
+                        slide.setAttribute('aria-hidden', i !== currentIndex ? 'true' : 'false');
+                    });
+                };
+
+                const goToSlide = (index) => {
+                    currentIndex = (index + totalSlides) % totalSlides;
+                    if (track) track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    if (dotsContainer) {
+                        dotsContainer.querySelectorAll('.bundle-carousel-dot').forEach((dot, i) => {
+                            dot.classList.toggle('active', i === currentIndex);
+                            dot.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
+                        });
+                    }
+                    updateCarouselA11y();
+                };
+
+                if (dotsContainer && totalSlides > 0) {
+                    for (let i = 0; i < totalSlides; i++) {
+                        const dot = document.createElement('button');
+                        dot.type = 'button';
+                        dot.className = 'bundle-carousel-dot' + (i === 0 ? ' active' : '');
+                        dot.setAttribute('role', 'tab');
+                        dot.setAttribute('aria-label', getSlideLabel(i));
+                        dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+                        dot.addEventListener('click', () => {
+                            goToSlide(i);
+                            resetAutoPlay();
+                        });
+                        dotsContainer.appendChild(dot);
+                    }
+                }
+
+                const goNext = () => goToSlide(currentIndex + 1);
+                const goPrev = () => goToSlide(currentIndex - 1);
+
+                if (prevBtn) prevBtn.addEventListener('click', () => { goPrev(); resetAutoPlay(); });
+                if (nextBtn) nextBtn.addEventListener('click', () => { goNext(); resetAutoPlay(); });
+
+                const startAutoPlay = () => {
+                    if (prefersReducedMotion || totalSlides <= 1) return;
+                    autoTimer = setInterval(goNext, 5000);
+                };
+
+                const resetAutoPlay = () => {
+                    if (autoTimer) clearInterval(autoTimer);
+                    startAutoPlay();
+                };
+
+                bundleCarouselEl.addEventListener('mouseenter', () => {
+                    if (autoTimer) clearInterval(autoTimer);
+                });
+                bundleCarouselEl.addEventListener('mouseleave', startAutoPlay);
+                bundleCarouselEl.addEventListener('focusin', () => {
+                    if (autoTimer) clearInterval(autoTimer);
+                });
+                bundleCarouselEl.addEventListener('focusout', (e) => {
+                    if (!bundleCarouselEl.contains(e.relatedTarget)) startAutoPlay();
+                });
+
+                window.bundleCarouselInstance = {
+                    updateDirection: () => {
+                        goToSlide(currentIndex);
+                        updateCarouselA11y();
+                        if (dotsContainer) {
+                            dotsContainer.querySelectorAll('.bundle-carousel-dot').forEach((dot, i) => {
+                                dot.setAttribute('aria-label', getSlideLabel(i));
+                            });
+                        }
+                    }
+                };
+
+                goToSlide(0);
+                startAutoPlay();
+            }
+
+            // Category Swiper — infinite loop, drag + wheel scroll, dots, autoplay
+            const categorySwiperEl = document.getElementById('categorySwiper');
+            const categoryPaginationEl = document.getElementById('categorySwiperPagination');
+            const CATEGORY_COUNT = 5;
+            let categoryAutoplayResumeTimer = null;
+
+            const updateCategoryDots = (swiper) => {
+                if (!categoryPaginationEl) return;
+                const activeIndex = swiper.realIndex % CATEGORY_COUNT;
+                categoryPaginationEl.querySelectorAll('.swiper-pagination-bullet').forEach((dot, i) => {
+                    dot.classList.toggle('swiper-pagination-bullet-active', i === activeIndex);
+                });
+            };
+
+            const buildCategoryDots = (swiper) => {
+                if (!categoryPaginationEl) return;
+                categoryPaginationEl.innerHTML = '';
+                for (let i = 0; i < CATEGORY_COUNT; i++) {
+                    const dot = document.createElement('button');
+                    dot.type = 'button';
+                    dot.className = 'swiper-pagination-bullet' + (i === 0 ? ' swiper-pagination-bullet-active' : '');
+                    dot.setAttribute('aria-label', htmlTag.getAttribute('lang') === 'ar'
+                        ? `الفئة ${i + 1}`
+                        : `Category ${i + 1}`);
+                    dot.addEventListener('click', () => {
+                        swiper.slideToLoop(i);
+                        resumeCategoryAutoplay(3500);
+                    });
+                    categoryPaginationEl.appendChild(dot);
+                }
+            };
+
+            const pauseCategoryAutoplay = () => {
+                clearTimeout(categoryAutoplayResumeTimer);
+                if (window.categorySwiperInstance?.autoplay) {
+                    window.categorySwiperInstance.autoplay.stop();
+                }
+            };
+
+            const resumeCategoryAutoplay = (delay = 2500) => {
+                clearTimeout(categoryAutoplayResumeTimer);
+                categoryAutoplayResumeTimer = setTimeout(() => {
+                    window.categorySwiperInstance?.autoplay?.start();
+                }, delay);
+            };
+
+            if (categorySwiperEl && typeof Swiper !== 'undefined') {
+                window.categorySwiperInstance = new Swiper('#categorySwiper', {
+                    loop: true,
+                    loopAdditionalSlides: CATEGORY_COUNT,
+                    slidesPerView: 2,
+                    slidesPerGroup: 1,
+                    spaceBetween: 16,
+                    grabCursor: true,
+                    speed: 800,
+                    rtl: htmlTag.getAttribute('lang') === 'ar',
+                    preventClicks: true,
+                    preventClicksPropagation: true,
+                    watchSlidesProgress: true,
+                    autoplay: {
+                        delay: 2800,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true,
+                    },
+                    mousewheel: {
+                        forceToAxis: true,
+                        sensitivity: 1,
+                        releaseOnEdges: false,
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 3,
+                            spaceBetween: 20,
+                        },
+                        1024: {
+                            slidesPerView: 5,
+                            spaceBetween: 24,
+                        },
+                    },
+                    on: {
+                        init(swiper) {
+                            buildCategoryDots(swiper);
+                            updateCategoryDots(swiper);
+                        },
+                        slideChange(swiper) {
+                            updateCategoryDots(swiper);
+                        },
+                    },
+                });
+
+                categorySwiperEl.addEventListener('touchstart', pauseCategoryAutoplay, { passive: true });
+                categorySwiperEl.addEventListener('touchend', () => resumeCategoryAutoplay(2500), { passive: true });
+                categorySwiperEl.addEventListener('mousedown', pauseCategoryAutoplay);
+                categorySwiperEl.addEventListener('mouseup', () => resumeCategoryAutoplay(1500));
+            }
 
             // Recent Order Notification Widget
             const recentOrderToast = document.getElementById('recentOrderToast');
