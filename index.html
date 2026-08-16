@@ -57,46 +57,6 @@
     </script>
 
     <style>
-/* =========================================
-   GLOBAL SUBTLE TOPOGRAPHIC WAVE PATTERN
-   ========================================= */
-
-   html {
-    position: relative;
-}
-
-html::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-
-    /* SVG contour lines */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cg fill='none' stroke='%23dfe2df' stroke-width='1' opacity='0.55'%3E%3Cpath d='M-100 180 C100 40 260 280 480 150 S820 80 1050 190 S1400 300 1700 120'/%3E%3Cpath d='M-100 215 C100 75 280 315 500 185 S840 115 1070 225 S1420 335 1700 155'/%3E%3Cpath d='M-100 250 C100 110 300 350 520 220 S860 150 1090 260 S1440 370 1700 190'/%3E%3Cpath d='M-120 480 C100 320 300 560 520 430 S850 340 1080 470 S1400 600 1720 400'/%3E%3Cpath d='M-120 515 C100 355 320 595 540 465 S870 375 1110 505 S1430 635 1720 435'/%3E%3Cpath d='M-120 760 C100 600 320 850 550 710 S880 620 1120 750 S1440 880 1720 670'/%3E%3Cpath d='M-120 795 C100 635 340 885 570 745 S900 655 1150 785 S1470 915 1720 705'/%3E%3C/g%3E%3C/svg%3E");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Keep clickable UI above the pattern */
-header,
-footer,
-nav,
-button,
-a,
-input,
-select,
-textarea {
-    position: relative;
-    z-index: 10000;
-}
-
-/* body*/
 
         body {
             font-family: 'Cairo', sans-serif;
